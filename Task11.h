@@ -32,16 +32,18 @@ public:
     void getTextTask();
     void getTextQuestion();
     void generateNumber(Type type);
-    void solutionTask(Type type, const std::string &stringSize);
+    void solutionTask(Type type);
     int searchBit(int number);
     void checkBit(int result);
     void solverType1();
     void solverType2();
     void solverType3();
     void solverType4();
-    void putTableAnswer();
+    void putTableAnswer(Type type);
     void genRand(int kol);
     Type getTypeFromString(const std::string &strType);
+    int getResult(int number1, int number2);
+    void generationAlphabet(int count);
 
 private:
     //end vector keeps answer

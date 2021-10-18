@@ -81,6 +81,7 @@ void Task11::genRand(int kol)
     {
         number_.push_back(rand() % (MAX - MIN + 1) + MIN);
     }
+    //здесь сделать проверку на ограничение по рандому
 }
 
 void Task11::generateNumber(Type type)
@@ -98,14 +99,12 @@ void Task11::generateNumber(Type type)
         }
         case type3:
         {
-            //поставить другие знач
-            genRand(2);
+            genRand(3);
             break;
         }
         case type4:
         {
-            //поставить другие знач
-            genRand(2);
+            genRand(4);
             break;
         }
         default:
@@ -113,7 +112,7 @@ void Task11::generateNumber(Type type)
     }
 }
 
-void Task11::solutionTask(Type type, const std::string &stringSize)
+void Task11::solutionTask(Type type)
 {
     switch (type) {
         case type1:
@@ -146,6 +145,11 @@ int Task11::searchBit(int number)
     return  ceil(log2(number));
 }
 
+int Task11::getResult(int number1, int number2)
+{
+    return number1 * searchBit(number2);
+}
+
 void Task11::checkBit(int result)
 {
     if (result % 8 == 0) {
@@ -162,63 +166,96 @@ void Task11::checkBit(int result)
         number_.push_back(result);
         table->sizeType = BIT;
     }
-    putTableAnswer();
+    putTableAnswer(getTypeFromString(table->typeTask));
 }
 
 void Task11::solverType1()
 {
-    int sizeBit = searchBit(number_.front());
-    int result = (number_.front() + 1) * sizeBit;
-    checkBit(result);
+    checkBit(getResult((number_.at(1)), number_.at(0)));
 }
 
 void Task11::solverType2()
 {
     //считаем кол-во алфавита
-    int count = 10 + number_.front() + 1;
+    int count = 10 + number_.at(1);
 
-    int result;
     //определяем кол-во бит
-    int sizeBit = searchBit(count);
-    int res = sizeBit * number_.front();
+    int res = getResult(number_.at(0), count);
     if (res % 8 != 0) {
         do {
             res++;
         } while (res % 8 != 0);
     }
-    result = res *  number_.back();
-//    number_.push_back(res *  number_.back());
-    checkBit(result);
+    checkBit(res *  number_.back());
 }
 
 void Task11::solverType3()
 {
-
+    int resBit = getResult(number_.at(0), number_.at(1));
+    if (resBit % 8 != 0) {
+        do {
+            resBit++;
+        } while (resBit % 8 != 0);
+    }
+        int res = ( resBit / 8) * number_.back();
+    checkBit(res * 8);
 }
 
 void Task11::solverType4()
 {
-
+    int resBit = getResult(number_.at(0), number_.at(1));
+    int oneUser = 8 * ( number_.at(3) / number_.at(2) );
+    checkBit(oneUser - resBit);
 }
 
-void Task11::putTableAnswer()
+//generate vector alphabet for type3 and type4 task
+void Task11::generationAlphabet(int count)
 {
-    const std::string query = "insert into answer_task values(" + std::to_string(table->id) + "," + std::to_string(table->id) + "," + std::to_string(number_.back()) + "," +  " ' " + std::to_string(number_.front()) + " " + std::to_string(number_.front() + 1 ) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
-    std::unique_ptr<MySQLStatement> ptr =  db.compileStatement(query.c_str(), 100);
+    std::vector<char> alphabet;
+    for(int i = 0; i < count; ++i) {
+        alphabet.push_back((rand() % ( 'z'-'a' +1)) +'a');
+    }
+}
+
+void Task11::putTableAnswer(Type type)
+{
+    std::string query = "insert into answer_task values(" + std::to_string(table->id) + "," + std::to_string(table->id) + "," + std::to_string(number_.back()) + ",";
+    switch (type) {
+        case type1: {
+            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
+            break;
+        }
+        case type2: {
+            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " " + std::to_string(number_.at(2)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
+            break;
+        }
+        case type3: {
+            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " " + std::to_string(number_.at(2)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
+            break;
+        }
+        case type4: {
+            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " " + std::to_string(number_.at(2)) + " " + std::to_string(number_.at(3)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
+            break;
+        }
+        default:
+            break;
+    }
+    const std::string constQuery = query;
+    std::unique_ptr<MySQLStatement> ptr =  db.compileStatement(query.c_str(), 200);
 }
 
 Type Task11::getTypeFromString(const std::string &strType)
 {
-    if (strType.find("type1")) {
+    if (strType.find("type1") != std::string::npos) {
         return type1;
     }
-    else if (strType.find("type2")) {
+    else if (strType.find("type2") != std::string::npos) {
         return type2;
     }
-    else if (strType.find("type3")) {
+    else if (strType.find("type3") != std::string::npos) {
         return type3;
     }
-    else if (strType.find("type4")) {
+    else if (strType.find("type4") != std::string::npos) {
         return type4;
     }
     return typeDefault;
