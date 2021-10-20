@@ -6,9 +6,14 @@ const std::string password = "JzxU8d3s";
 const std::string dbName = "ashahowa";
 int port = 3306;
 
-DataTask::DataTask()
+DataTask::DataTask(int num)
 {
     db.init(host, user,password,dbName,port);
+    passId(num);
+    passQueryType();
+    passNumberTask();
+    passTextTask();
+    passTextQuestion();
 }
 
 void DataTask::passId(int num)
@@ -54,15 +59,6 @@ void DataTask::passTextQuestion()
     if (!ptr->eof()) {
         (*ptr)>>textQuestion;
     }
-}
-
-void DataTask::initCurrentDataTask(int num)
-{
-    passId(num);
-    passQueryType();
-    passNumberTask();
-    passTextTask();
-    passTextQuestion();
 }
 
 Type DataTask::getTypeFromString(const std::string &strType)

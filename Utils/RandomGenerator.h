@@ -13,11 +13,16 @@ public:
     int DefaultRandomEngine()
     {
         static std::default_random_engine e;
+        std::random_device rd;
+        e.seed(rd());
         return dist_(e);
+
     }
     int Mt19937()
     {
         static std::mt19937 e;
+        std::random_device rd;
+        e.seed(rd());
         return dist_(e);
     }
     int rand()
@@ -38,24 +43,4 @@ public:
 
 };
 
-template<int min = std::numeric_limits<int>::min(),
-        int max = std::numeric_limits<int>::max()>
-class RandomGenerator {
-public:
-    RandomGenerator()
-    {
-        std::random_device rd;
-        generator_.seed(rd());
-    }
-    ~RandomGenerator() = default;
-
-    int operator()()
-    {
-        return distribution_(generator_);
-    }
-
-protected:
-    std::uniform_int_distribution<int> distribution_{min, max};
-    std::mt19937 generator_;
-};
 #endif //UNTITLED5_RANDOMGENERATOR_H

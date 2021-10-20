@@ -8,46 +8,48 @@
 
 Task11::Task11(int num)
 {
-    table->initCurrentDataTask(num);
+    table = std::make_unique<DataTask>(num);
 }
 
-void Task11::genRand(int kol)
+void Task11::genRand(int kol, std::vector<int> limitVec)
 {
-
-    RandomGenerator<1, 500 > generator;
     for(int i = 0; i < kol ; ++i)
     {
-        Distribution gen;
-        number_.push_back(gen.random(1,100).Mt19937());
+        number_.push_back(generator.random(2, limitVec[i]).Mt19937());
     }
-
 }
-
 
 void Task11::solutionTask(Type type)
 {
     switch (type) {
         case type1:
         {
-            genRand(2);
+            std::vector<int> limitVec = { 700, 500 };
+            genRand(2, limitVec);
+            if (number_.front() < number_.back()) {
+                std::swap(number_[0], number_[1]);
+            }
             solverType1();
             break;
         }
         case type2:
         {
-            genRand(3);
+            std::vector<int> limitVec = { 10, 33, 400 };
+            genRand(3, limitVec);
             solverType2();
             break;
         }
         case type3:
         {
-            genRand(3);
+            std::vector<int> limitVec = { 50, 11, 150 };
+            genRand(3, limitVec);
             solverType3();
             break;
         }
         case type4:
         {
-            genRand(4);
+            std::vector<int> limitVec = { 20, 15, 300, 2000 };
+            genRand(4, limitVec);
             solverType4();
             break;
         }
@@ -129,11 +131,6 @@ void Task11::generationAlphabet(int count)
     for(int i = 0; i < count; ++i) {
         alphabet.push_back((rand() % ( 'z'-'a' +1)) +'a');
     }
-}
-
-DataTask Task11::getTable()
-{
-    return *table;
 }
 
 

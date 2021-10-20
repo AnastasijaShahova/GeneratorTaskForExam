@@ -12,13 +12,12 @@ enum Type {
 
 class DataTask {
 public:
-    DataTask();
+    DataTask(int num);
     void passQueryType();
     void passId(int num);
     void passNumberTask();
     void passTextTask();
     void passTextQuestion();
-    void initCurrentDataTask(int num);
     Type getTypeFromString(const std::string &strType);
     void putTableAnswer(Type type, std::vector<int> vectorNumber);
 

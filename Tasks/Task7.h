@@ -2,15 +2,22 @@
 #define UNTITLED5_TASK7_H
 
 #include "../Database/DataTask.h"
+#include "../Utils/RandomGenerator.h"
 
 class Task7 {
 public:
-
+    Task7(int num);
+    void solutionTask(Type type);
+    void solverType1();
+    void solverType2();
+    void solverType3();
+    void solverType4();
 
 
 private:
     std::vector<int> number_;
-    std::unique_ptr<DataTask> table = std::make_unique<DataTask>();
+    Distribution generator;
+    std::unique_ptr<DataTask> table;
 };
 
 

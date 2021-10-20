@@ -16,15 +16,14 @@ public:
     void solverType3();
     void solverType4();
 
-    void genRand(int kol);
+    void genRand(int kol, std::vector<int> limitVec);
     void generationAlphabet(int count);
-
-    DataTask getTable();
 
 private:
     //end vector keeps answer
     std::vector<int> number_;
-    std::unique_ptr<DataTask> table = std::make_unique<DataTask>();
+    Distribution generator;
+    std::unique_ptr<DataTask> table ;
 };
 
 #endif //UNTITLED5_TASK11_H
