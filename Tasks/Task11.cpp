@@ -1,22 +1,9 @@
 #include "Task11.h"
 #include <math.h>
 
-#define BIT "битах"
-#define BYTE "байтах"
-#define MBYTE "мегабайтах"
-#define KBYTE "килобайтах"
-
 Task11::Task11(int num)
 {
     table = std::make_unique<DataTask>(num);
-}
-
-void Task11::genRand(int kol, std::vector<int> limitVec)
-{
-    for(int i = 0; i < kol ; ++i)
-    {
-        number_.push_back(generator.random(2, limitVec[i]).Mt19937());
-    }
 }
 
 void Task11::solutionTask(Type type)
@@ -56,11 +43,6 @@ void Task11::solutionTask(Type type)
         default:
             break;
     }
-}
-
-int Task11::searchBit(int number)
-{
-    return  ceil(log2(number));
 }
 
 int Task11::getResult(int number1, int number2)
