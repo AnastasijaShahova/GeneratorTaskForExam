@@ -4,6 +4,12 @@
 #include "../Database/DataTask.h"
 #include "../Utils/RandomGenerator.h"
 
+#define BIT "битах"
+#define BYTE "байтах"
+#define MBYTE "мегабайтах"
+#define KBYTE "килобайтах"
+#define MBYTE "мегобайтах"
+
 class ITask {
 public:
     virtual void solutionTask(Type type) = 0;

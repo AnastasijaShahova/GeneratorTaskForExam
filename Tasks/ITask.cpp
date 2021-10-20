@@ -1,10 +1,5 @@
 #include "ITask.h"
 
-#define BIT "битах"
-#define BYTE "байтах"
-#define MBYTE "мегабайтах"
-#define KBYTE "килобайтах"
-#define MBYTE "мегобайтах"
 
 void ITask::genRand(int count, std::vector<int> limitVec)
 {

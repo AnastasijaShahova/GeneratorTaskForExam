@@ -1,9 +1,5 @@
 #include "Task7.h"
 
-
-
-
-
 Task7::Task7(int num)
 {
     table = std::make_unique<DataTask>(num);
@@ -74,8 +70,8 @@ void Task7::solverType3()
 void Task7::solverType4()
 {
     //перевести только первое число в бит
-    int methodA = number_.at(0) *  number_.at(0)  * pow(2, 23) / (100 * pow(2, number_.at(1)) + number_.at(3) + number_.at(4);
-    int methodB = number_.at(0) * pow(2, 23) / pow(2, number_.at(1);
+    int methodA = number_.at(0) *  number_.at(0)  * pow(2, 23) / (100 * pow(2, number_.at(1)) + number_.at(3) + number_.at(4));
+    int methodB = number_.at(0) * pow(2, 23) / pow(2, number_.at(1));
     if (methodA > methodB) {
         int reuslt = methodA - methodB;
     }

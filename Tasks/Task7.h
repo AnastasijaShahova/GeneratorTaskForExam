@@ -16,6 +16,7 @@ public:
 
 
 private:
+    std::vector<int> number_;
     std::unique_ptr<DataTask> table;
 };
 

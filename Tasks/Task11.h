@@ -16,6 +16,8 @@ public:
     void generationAlphabet(int count);
 
 private:
+    //end vector keeps answer
+    std::vector<int> number_;
     std::unique_ptr<DataTask> table ;
 };
 
