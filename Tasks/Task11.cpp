@@ -12,7 +12,7 @@ void Task11::solutionTask(Type type)
         case type1:
         {
             std::vector<int> limitVec = { 700, 500 };
-            genRand(2, limitVec);
+            genRand(2, limitVec, number_);
             if (number_.front() < number_.back()) {
                 std::swap(number_[0], number_[1]);
             }
@@ -22,21 +22,21 @@ void Task11::solutionTask(Type type)
         case type2:
         {
             std::vector<int> limitVec = { 10, 33, 400 };
-            genRand(3, limitVec);
+            genRand(3, limitVec, number_);
             solverType2();
             break;
         }
         case type3:
         {
             std::vector<int> limitVec = { 50, 11, 150 };
-            genRand(3, limitVec);
+            genRand(3, limitVec, number_);
             solverType3();
             break;
         }
         case type4:
         {
             std::vector<int> limitVec = { 20, 15, 300, 2000 };
-            genRand(4, limitVec);
+            genRand(4, limitVec, number_);
             solverType4();
             break;
         }

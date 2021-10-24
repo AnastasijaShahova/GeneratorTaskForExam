@@ -8,7 +8,7 @@ public:
     Task11(int num);
     void solutionTask(Type type) override;
     int getResult(int number1, int number2);
-    void checkBit(int result);
+    void checkBit(int result) override;
     void solverType1();
     void solverType2();
     void solverType3();

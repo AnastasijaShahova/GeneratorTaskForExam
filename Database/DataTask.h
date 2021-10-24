@@ -1,5 +1,6 @@
 #ifndef UNTITLED5_DATATASK_H
 #define UNTITLED5_DATATASK_H
+
 #include "MySqlDatabase.h"
 
 enum Type {

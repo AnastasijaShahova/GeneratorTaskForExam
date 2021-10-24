@@ -13,15 +13,15 @@ void Task7::solutionTask(Type type)
         {
             //проверка на то, чтобы все было в степенях двойки
             std::vector<int> limitVec = { 1024, 1024, 512 };
-            genRand(3, limitVec);
+            genRand(3, limitVec, number_);
             solverType1();
             break;
         }
         //хранение звук файлов
         case type2:
         {
-            std::vector<int> limitVec = { 100, 64, 512 };
-            genRand(3, limitVec);
+            std::vector<int> limitVec = { 100, 64, 100 };
+            genRand(3, limitVec, number_);
             solverType2();
             break;
         }
@@ -29,7 +29,7 @@ void Task7::solutionTask(Type type)
         case type3:
         {
             std::vector<int> limitVec = { 20, 15, 12, 1024 };
-            genRand(4, limitVec);
+            genRand(4, limitVec, number_);
             solverType3();
             break;
         }
@@ -37,7 +37,7 @@ void Task7::solutionTask(Type type)
         case type4:
         {
             std::vector<int> limitVec = { 20, 20, 80, 25, 10 };
-            genRand(5, limitVec);
+            genRand(5, limitVec, number_);
             solverType4();
             break;
         }
@@ -48,15 +48,23 @@ void Task7::solutionTask(Type type)
 
 void Task7::solverType1()
 {
+    if (!checkPower2(number_.at(0)) || !checkPower2(number_.at(1))) {
+        number_.at(0) = pow(2, generator.random(2, 10).Mt19937());
+        number_.at(1) = pow(2, generator.random(2, 10).Mt19937());
+    }
     int result = number_.at(0) * number_.at(1) * searchBit(number_.at(2));
 }
 
 // сделать более гибким под типы
 void Task7::solverType2()
 {
-    //перевести в биты
+    //перевести в байты
+    if (number_.at(1) % 8) {
+        number_.at(1) = pow(8, generator.random(2, 4).Mt19937());
+    }
     int byte = number_.at(1) / 8;
-    int result = (number_.at(2) * pow(2, 20)) / (byte * number_.at(0) * 1000);
+    double result = (number_.at(2) * pow(2, 20)) / (byte * number_.at(0) * 1000);
+    checkBit(round(result));
 }
 
 void Task7::solverType3()
@@ -64,26 +72,51 @@ void Task7::solverType3()
     //здесь нужно перевести все в биты
     int t0 = ( number_.at(3) * pow(2, 20) ) /  pow(2, number_.at(0));
     int t1 = ( number_.at(2) * pow(2, 23) ) /  pow(2, number_.at(0));
-    int result = t0 + t1;
+    checkBit(t0 + t1);
 }
 
 void Task7::solverType4()
 {
+    int result = 0;
     //перевести только первое число в бит
     int methodA = number_.at(0) *  number_.at(0)  * pow(2, 23) / (100 * pow(2, number_.at(1)) + number_.at(3) + number_.at(4));
     int methodB = number_.at(0) * pow(2, 23) / pow(2, number_.at(1));
     if (methodA > methodB) {
-        int reuslt = methodA - methodB;
+        result = methodA - methodB;
     }
     else {
-        int reuslt = methodB - methodA;
+        result = methodB - methodA;
     }
-
+    checkBit(result);
 }
 
-void Task7::checkType()
+void Task7::checkBit(int result)
 {
-
+    if (table->getTypeFromString(table->getTypeTask()) == type1) {
+        if (fmod(result, 8) == 0) {
+            if (fmod(result, 1024) == 0) {
+                number_.push_back(result / 8192);
+                table->setSizeType(KBYTE);
+            }
+        }
+        else {
+                number_.push_back(result / 8);
+                table->setSizeType(BYTE);
+            }
+    }
+    else if (fmod(result, 60) == 0) {
+        if (fmod(result, 60) == 0) {
+            number_.push_back(result / 3600);
+            table->setSizeType(HOUR);
+        }
+        else {
+            number_.push_back(result / 60);
+            table->setSizeType(MIN);
+        }
+    }
+    else {
+        number_.push_back(result);
+        table->setSizeType(SEC);
+    }
+    table->putTableAnswer(table->getTypeFromString(table->getTypeTask()), number_);
 }
-
-//написать метод перевода в системы счисления

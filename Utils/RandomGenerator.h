@@ -42,5 +42,4 @@ public:
     }
 
 };
-
 #endif //UNTITLED5_RANDOMGENERATOR_H

@@ -8,17 +8,19 @@
 #define BYTE "байтах"
 #define MBYTE "мегабайтах"
 #define KBYTE "килобайтах"
-#define MBYTE "мегобайтах"
+#define SEC "секундах"
+#define MIN "минутах"
+#define HOUR "часах"
+
 
 class ITask {
 public:
     virtual void solutionTask(Type type) = 0;
-    void genRand(int count, std::vector<int> limitVec);
+    void genRand(int count, std::vector<int> limitVec, std::vector<int>& number);
     int searchBit(int number);
+    bool checkPower2(int number);
+    virtual void checkBit(int result) = 0;
 
-private:
-    //end vector keeps answer
-    std::vector<int> number_;
     Distribution generator;
 };
 
