@@ -55,10 +55,8 @@ void Task7::solverType1()
     int result = number_.at(0) * number_.at(1) * searchBit(number_.at(2));
 }
 
-// сделать более гибким под типы
 void Task7::solverType2()
 {
-    //перевести в байты
     if (number_.at(1) % 8) {
         number_.at(1) = pow(8, generator.random(2, 4).Mt19937());
     }
@@ -69,7 +67,6 @@ void Task7::solverType2()
 
 void Task7::solverType3()
 {
-    //здесь нужно перевести все в биты
     int t0 = ( number_.at(3) * pow(2, 20) ) /  pow(2, number_.at(0));
     int t1 = ( number_.at(2) * pow(2, 23) ) /  pow(2, number_.at(0));
     checkBit(t0 + t1);
@@ -78,7 +75,6 @@ void Task7::solverType3()
 void Task7::solverType4()
 {
     int result = 0;
-    //перевести только первое число в бит
     int methodA = number_.at(0) *  number_.at(0)  * pow(2, 23) / (100 * pow(2, number_.at(1)) + number_.at(3) + number_.at(4));
     int methodB = number_.at(0) * pow(2, 23) / pow(2, number_.at(1));
     if (methodA > methodB) {

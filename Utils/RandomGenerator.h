@@ -40,6 +40,5 @@ public:
         Random rnd(low, high);
         return rnd;
     }
-
 };
 #endif //UNTITLED5_RANDOMGENERATOR_H
