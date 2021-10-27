@@ -20,6 +20,7 @@ public:
     int searchBit(int number);
     bool checkPower2(int number);
     virtual void checkBit(int result) = 0;
+    virtual ~ITask() {}
 
     Distribution generator;
 };
