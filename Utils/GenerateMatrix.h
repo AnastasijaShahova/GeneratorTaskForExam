@@ -7,7 +7,7 @@ class GenerateMatrix
 public:
     GenerateMatrix(double min_dist, double max_dist) : distance_distribution_(min_dist, max_dist) {}
 
-    void random_graph(int graph_size, double edge_dens, double min_dist, double max_dist)
+    void randomGenerateUndirectedGraph(int graph_size, double edge_dens, double min_dist, double max_dist)
     {
         AdjListGraph<int, double> g(graph_size);
         std::random_device rd;
@@ -21,7 +21,7 @@ public:
                     if (!(g.adjacent(i,j) && g.adjacent(j,i)))
                     {
                         double dist = distance_distribution(gen);
-                        g.addEdge(i,j, dist); // set two directed edges as one undirected
+                        g.addEdge(i,j, dist); 
                         g.addEdge(j,i, dist);
                     }
                 }
