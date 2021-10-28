@@ -7,7 +7,7 @@ class GenerateMatrix
 public:
     GenerateMatrix(double min_dist, double max_dist) : distance_distribution_(min_dist, max_dist) {}
 
-    void random_graph(int graph_size, double edge_dens, double min_dist, double max_dist)
+    void randomGraph(int graph_size, double edge_dens, double min_dist, double max_dist)
     {
         AdjListGraph<int, double> g(graph_size);
         std::random_device rd;
