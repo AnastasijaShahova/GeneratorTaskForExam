@@ -33,7 +33,7 @@ public:
         int count = 0;
         for (int i = 1; i < graph_size; i++)
         {
-            int path_len = sp.path_size(0,i);
+            int path_len = sp.pathSize(0, i);
             if (path_len != -1)
             {
                 sum += path_len;

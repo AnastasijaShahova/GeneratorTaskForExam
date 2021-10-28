@@ -108,7 +108,7 @@ void AdjListGraph::print()
 }
 
 // Calculate the cost as sum of distances between path vertices
-int AlgorithmDijkstra::path_size(int source, int target)
+int AlgorithmDijkstra::pathSize(int source, int target)
 {
     path(source, target);
     int sum = 0;

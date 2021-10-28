@@ -40,7 +40,7 @@ public:
 private:
     int numVertex;
     int numEdge;
-    std::vector<std::vector<GraphAttributes>> adjacencyList;
+    std::vector< std::vector<GraphAttributes> > adjacencyList;
     std::vector<int> vertices; // store nodes values
 };
 
@@ -49,7 +49,7 @@ class AlgorithmDijkstra
 public:
     AlgorithmDijkstra(AdjListGraph *_g) : g(_g) {}
     std::vector<int> path(int source, int target);
-    int path_size(int source, int target);
+    int pathSize(int source, int target);
 
 private:
     AdjListGraph *g;

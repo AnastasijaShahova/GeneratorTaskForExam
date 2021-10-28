@@ -9,5 +9,3 @@ include_directories(/usr/local/mysql/include)
 target_link_libraries(untitled5 /usr/local/mysql/lib/libmysqlclient.21.dylib)
 
 
-
-
