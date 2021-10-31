@@ -13,47 +13,47 @@ struct GraphAttributes
     GraphAttributes(int v, int w) : vertex(v), weight(w) {}
 };
 
-class AdjListGraph
+class MatrixGraph
 {
 public:
-    AdjListGraph() {}
-    AdjListGraph(int numVert);
-    ~AdjListGraph() { }
+    MatrixGraph(int numVert);
+    ~MatrixGraph() {}
 
-    int V() const { return numVertex; }
-    int E() const { return numEdge; }
+    int getV() const { return numVertex; }
+    int getE() const { return numEdge; }
 
     bool adjacent(int x, int y) const;
+
     std::vector<GraphAttributes> neighbors(int x) const;
 
     void addEdge(int x, int y);
     void addEdge(int x, int y, int w);
     void deleteEdge(int x, int y);
 
-    int getNodeValue(int x) const;
-    void setNodeValue(int x, int value);
-
     int getEdgeValue(int x, int y);
     void setEdgeValue(int x, int y, int w);
+
+    int getNodeValue(int x) const;
+    void setNodeValue(int x, int value);
     void print();
 
 private:
     int numVertex;
     int numEdge;
-    std::vector< std::vector<GraphAttributes> > adjacencyList;
-    std::vector<int> vertices; // store nodes values
+    std::vector<std::vector<int>> matrix;
+    std::vector<int> vertices;
 };
 
 class AlgorithmDijkstra
 {
 public:
-    AlgorithmDijkstra(AdjListGraph *_g) : g(_g) {}
+    AlgorithmDijkstra(MatrixGraph *_g) : g(_g) {}
     std::vector<int> path(int source, int target);
     int pathSize(int source, int target);
 
 private:
-    AdjListGraph *g;
-    std::vector<int> min_distance;
+    MatrixGraph *g;
+    std::vector<double> minDistance;
     std::vector<int> previous; // store history of visiting, helps to restore the shortest path
     std::vector<int> _path; // store shortest path
 };

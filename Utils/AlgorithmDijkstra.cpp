@@ -1,108 +1,101 @@
 #include "AlgorithmDijkstra.h"
 
-AdjListGraph::AdjListGraph(int numVert) : numVertex(numVert), numEdge(0)
+MatrixGraph::MatrixGraph(int numVert) : numVertex(numVert), numEdge(0)
 {
-    vertices.reserve(numVertex);
-    adjacencyList.reserve(numVertex);
-
+    matrix.reserve(numVertex);
     for (int i = 0; i < numVertex; i++)
     {
-        adjacencyList.push_back(std::vector< GraphAttributes>());
-        adjacencyList[i].reserve(numVertex);
-    }
-}
-
-bool AdjListGraph::adjacent(int x, int y) const
-{
-    // return true if adjacency list for "x" node contains "y" node
-    return std::find_if(adjacencyList[x].begin(), adjacencyList[x].end(), [&y](GraphAttributes elem){
-        return elem.vertex == y;
-    }) != adjacencyList[x].end();
-}
-
-std::vector<GraphAttributes> AdjListGraph::neighbors(int x) const
-{
-    return adjacencyList[x];
-}
-
-void AdjListGraph::addEdge(int x, int y)
-{
-    assert(x >= 0 || y >= 0);
-    addEdge(x,y, 0);
-}
-
-void AdjListGraph::addEdge(int x, int y, int w)
-{
-    assert(x >= 0 || y >= 0 || w >= 0);
-    for (auto &it : adjacencyList[x])
-    {
-        if (it.vertex == y)
+        matrix.push_back(std::vector<int>());
+        matrix[i].reserve(numVertex);
+        for (int j = 0; j < numVertex; j++)
         {
-            it.weight = w;
-            return;
+            matrix[i].push_back(0); // initialize by zero
         }
     }
-    numEdge++;
-    adjacencyList[x].push_back(GraphAttributes(y, w));
 }
 
-void AdjListGraph::deleteEdge(int x, int y)
+bool MatrixGraph::adjacent(int x, int y) const
 {
     assert(x >= 0 || y >= 0);
-    // look for the "y" vertex in the adj list
-    auto nit = std::find_if(adjacencyList[x].begin(), adjacencyList[x].end(), [&y](GraphAttributes elem){
-        return elem.vertex == y;
-    });
-    if (nit != adjacencyList[x].end()) // if find - erase
-    {
-        numEdge--;
-        adjacencyList[x].erase(nit);
-    }
+    return matrix[x][y] != 0.0;
 }
 
-int AdjListGraph::getNodeValue(int x) const
+std::vector<GraphAttributes> MatrixGraph::neighbors(int x) const
+{
+    assert(x >= 0);
+    std::vector<GraphAttributes> nbrs;
+    for (int i = 0; i < numVertex; i++)
+        if (matrix[x][i] != 0)
+            nbrs.push_back(GraphAttributes(i,matrix[x][i]));
+        return nbrs;
+}
+
+void MatrixGraph::addEdge(int x, int y)
+{
+    assert(x >= 0 || y >= 0);
+    addEdge(x,y,0);
+}
+
+void MatrixGraph::addEdge(int x, int y, int w)
+{
+    assert(x >= 0 || y >= 0);
+    if (matrix[x][y] == 0.0)
+        numEdge++;
+    matrix[x][y] = w;
+}
+
+void MatrixGraph::deleteEdge(int x, int y)
+{
+    assert(x >= 0 || y >= 0);
+    if (matrix[x][y] != 0)
+        numEdge--;
+    matrix[x][y] = 0;
+}
+
+int MatrixGraph::getEdgeValue(int x, int y)
+{
+    assert(x >= 0 || y >= 0);
+    return matrix[x][y];
+}
+
+void MatrixGraph::setEdgeValue(int x, int y, int w)
+{
+    assert(x >= 0 || y >= 0 || w >= 0);
+    matrix[x][y] = w;
+}
+
+int MatrixGraph::getNodeValue(int x) const
 {
     assert(x >= 0);
     return vertices[x];
 }
 
-void AdjListGraph::setNodeValue(int x, int value)
+void MatrixGraph::setNodeValue(int x, int value)
 {
-    if (x >= 0) return;
+    assert(x >= 0);
     vertices[x] = value;
 }
 
-int AdjListGraph::getEdgeValue(int x, int y)
+void MatrixGraph::print()
 {
-    assert(x >= 0 || y >= 0);
-    auto nit = std::find_if(adjacencyList[x].begin(), adjacencyList[x].end(), [&y](GraphAttributes elem){
-        return elem.vertex == y;
-    });
-    if (nit != adjacencyList[x].end())
-        return nit->weight;
-    return 0; // return 0 if there's no edge
-}
-
-void AdjListGraph::setEdgeValue(int x, int y, int w)
-{
-    assert(x >= 0 || y >= 0);
-    auto nit = std::find_if(adjacencyList[x].begin(), adjacencyList[x].end(), [&y](GraphAttributes elem){
-        return elem.vertex == y;
-    });
-    if (nit != adjacencyList[x].end())
-        nit->weight = w;
-}
-
-void AdjListGraph::print()
-{
-    std::cout << "Adjacency list graph\n";
+    std::cout << "Matrix-based graph\n";
     std::cout << "Number of vertices: " << numVertex << std::endl;
     std::cout << "Number of edges: " << numEdge << std::endl;
+    std::cout << "   ";
+    for (int i = 0; i < numVertex; i++)
+    {
+        std::cout.width(3);
+        std::cout << "V" << i ;
+    }
+    std::cout <<  std::endl;
     for (int i = 0; i < numVertex; i++)
     {
         std::cout << "V" << i << ": ";
-        for (auto &elem : adjacencyList[i])
-            std::cout << "[" << elem.vertex << ", w" << elem.weight << "] ";
+        for (int j = 0; j < numVertex; j++)
+        {
+            std::cout.width(3);
+            std::cout << matrix[i][j] << " ";
+        }
         std::cout << std::endl;
     }
 }
@@ -123,10 +116,10 @@ int AlgorithmDijkstra::pathSize(int source, int target)
 
 std::vector<int> AlgorithmDijkstra::path(int source, int target)
 {
-    int n = g->V(); // number of vertices
-    min_distance.clear();
-    min_distance.resize(n, std::numeric_limits<double>::infinity()); // set distances to infinity
-    min_distance[source] = 0;
+    int n = g->getV(); // number of vertices
+    minDistance.clear();
+    minDistance.resize(n, std::numeric_limits<double>::infinity()); // set distances to infinity
+    minDistance[source] = 0;
 
     previous.clear();
     previous.resize(n, -1); // store vertices to reproduce the shortest path
@@ -135,7 +128,7 @@ std::vector<int> AlgorithmDijkstra::path(int source, int target)
     std::priority_queue< std::pair<int, int>,
     std::vector<std::pair<int, int> >,
     std::greater<std::pair<int, int> > > vertex_queue; // min-heap
-    vertex_queue.push(std::make_pair(min_distance[source], source)); // put the start vertice to queue
+    vertex_queue.push(std::make_pair(minDistance[source], source)); // put the start vertice to queue
 
     // iterate until queue is empty
     while (!vertex_queue.empty())
@@ -144,7 +137,7 @@ std::vector<int> AlgorithmDijkstra::path(int source, int target)
         int u = vertex_queue.top().second; // vertex
         vertex_queue.pop();
 
-        if (dist < min_distance[u])
+        if (dist < minDistance[u])
             continue;
 
         const std::vector<GraphAttributes> &neighbors = g->neighbors(u); // get all neighbors of "u"
@@ -153,11 +146,11 @@ std::vector<int> AlgorithmDijkstra::path(int source, int target)
             int v = neighbor.vertex;
             int weight = neighbor.weight;
             int distance_through_u = dist + weight; // calcualate the cost
-            if (distance_through_u < min_distance[v])
+            if (distance_through_u < minDistance[v])
             {
-                min_distance[v] = distance_through_u;
+                minDistance[v] = distance_through_u;
                 previous[v] = u;
-                vertex_queue.push(std::make_pair(min_distance[v], v)); // push on top of heap the most "effective" vertex
+                vertex_queue.push(std::make_pair(minDistance[v], v)); // push on top of heap the most "effective" vertex
             }
             }
     }

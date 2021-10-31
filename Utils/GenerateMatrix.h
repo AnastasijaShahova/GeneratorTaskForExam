@@ -1,51 +1,60 @@
 #ifndef UNTITLED5_GENERATEMATRIX_H
 #define UNTITLED5_GENERATEMATRIX_H
 #include "AlgorithmDijkstra.h"
+#include "RandomGenerator.h"
 
 class GenerateMatrix
 {
 public:
-    GenerateMatrix(double min_dist, double max_dist) : distance_distribution_(min_dist, max_dist) {}
+    GenerateMatrix(int graphSize) : matrix_(new MatrixGraph(graphSize)) {}
 
-    void randomGenerateUndirectedGraph(int graph_size, double edge_dens, double min_dist, double max_dist)
+    void randomGenerateUndirectedGraph(int minDist, int maxDist)
     {
-        AdjListGraph<int, double> g(graph_size);
-        std::random_device rd;
-        std::mt19937 gen(rd());
-        for (int i = 0; i < graph_size; ++i)
-        {
-            for (int j = 0; j < graph_size; j++)
-            {
-                if (edge_distribution(gen) <= edge_dens)
-                {
-                    if (!(g.adjacent(i,j) && g.adjacent(j,i)))
-                    {
-                        double dist = distance_distribution(gen);
-                        g.addEdge(i,j, dist); 
-                        g.addEdge(j,i, dist);
-                    }
+        Distribution generator;
+
+        for (int i = 0; i < matrix_->getV(); ++i) {
+
+            for (int j = 0; j <  matrix_->getV(); j++) {
+
+                int dist = generator.random(minDist, maxDist).Mt19937();
+                if (i != j ) {
+                    matrix_->addEdge(i, j, dist);
+                    matrix_->addEdge(j, i, dist);
+                }
+                else {
+                    matrix_->addEdge(i, j, 0);
                 }
             }
         }
+    }
 
-        AlgorithmDijkstra<int,double> sp(&g);
-        double sum = 0;
-        int count = 0;
-        for (int i = 1; i < graph_size; i++)
-        {
-            int path_len = sp.pathSize(0, i);
-            if (path_len != -1)
-            {
-                sum += path_len;
-                count++;
+    void randomGenerateDirectedGraph(int minDist, int maxDist)
+    {
+        Distribution generator;
+        for (int i = 0; i < matrix_->getV(); ++i) {
+
+            for (int j = 0; j <  matrix_->getV(); j++) {
+
+                int dist = generator.random(0, 1).Mt19937();
+                if (i != j ) {
+                    matrix_->addEdge(i, j, dist);
+                    matrix_->addEdge(j, i, 0);
+                }
+                else {
+                    matrix_->addEdge(i, j, 0);
+                }
             }
         }
-        std::cout << "Average path length: " << sum / count << std::endl;
+    }
+
+    MatrixGraph &getG() const
+    {
+        return *matrix_;
     }
 
 private:
-    std::uniform_real_distribution<> distance_distribution_;
-    std::uniform_real_distribution<> edge_distribution_(0.0, 1.0);
+
+    MatrixGraph *matrix_;
 };
 
 #endif //UNTITLED5_GENERATEMATRIX_H
