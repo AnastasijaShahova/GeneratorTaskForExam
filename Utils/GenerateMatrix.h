@@ -35,8 +35,8 @@ public:
 
             for (int j = 0; j <  matrix_->getV(); j++) {
 
-                int dist = generator.random(0, 1).Mt19937();
-                if (i != j ) {
+                int dist = generator.random(minDist, maxDist).Mt19937();
+                if (i != j && i <= j) {
                     matrix_->addEdge(i, j, dist);
                     matrix_->addEdge(j, i, 0);
                 }

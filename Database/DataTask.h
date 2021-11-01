@@ -20,7 +20,7 @@ public:
     void passTextTask();
     void passTextQuestion();
     Type getTypeFromString(const std::string &strType);
-    void putTableAnswer(Type type, std::vector<int> vectorNumber);
+    void putTableAnswer(std::vector<int> vectorNumber);
 
     int getId() const;
     int getNumberTask() const;

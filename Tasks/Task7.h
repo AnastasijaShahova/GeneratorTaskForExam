@@ -12,11 +12,11 @@ public:
     void solverType2();
     void solverType3();
     void solverType4();
-    void checkBit(int result) override;
+    void checkResult(int result) override;
 
 private:
     std::vector<int> number_;
-    std::unique_ptr<DataTask> table;
+//    std::unique_ptr<DataTask> table;
 };
 
 #endif //UNTITLED5_TASK7_H

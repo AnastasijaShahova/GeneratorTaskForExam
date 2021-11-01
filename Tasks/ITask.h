@@ -19,10 +19,12 @@ public:
     void genRand(int count, std::vector<int> limitVec, std::vector<int>& number);
     int searchBit(int number);
     bool checkPower2(int number);
-    virtual void checkBit(int result) = 0;
+    virtual void checkResult(int result) = 0;
+    void initializedTable(int num);
     virtual ~ITask() {}
 
     Distribution generator;
+    std::unique_ptr<DataTask> table;
 };
 
 

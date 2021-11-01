@@ -3,7 +3,7 @@
 
 Task11::Task11(int num)
 {
-    table = std::make_unique<DataTask>(num);
+    initializedTable(num);
 }
 
 void Task11::solutionTask(Type type)
@@ -50,7 +50,7 @@ int Task11::getResult(int number1, int number2)
     return number1 * searchBit(number2);
 }
 
-void Task11::checkBit(int result)
+void Task11::checkResult(int result)
 {
     if (result % 8 == 0) {
         if (result % 1024 == 0) {
@@ -66,12 +66,12 @@ void Task11::checkBit(int result)
         number_.push_back(result);
         table->setSizeType(BIT);
     }
-    table->putTableAnswer(table->getTypeFromString(table->getTypeTask()), number_);
+    table->putTableAnswer(number_);
 }
 
 void Task11::solverType1()
 {
-    checkBit(getResult((number_.at(1)), number_.at(0)));
+    checkResult(getResult((number_.at(1)), number_.at(0)));
 }
 
 void Task11::solverType2()
@@ -84,7 +84,7 @@ void Task11::solverType2()
             res++;
         } while (res % 8 != 0);
     }
-    checkBit(res *  number_.back());
+    checkResult(res * number_.back());
 }
 
 void Task11::solverType3()
@@ -96,14 +96,14 @@ void Task11::solverType3()
         } while (resBit % 8 != 0);
     }
         int res = ( resBit / 8) * number_.back();
-    checkBit(res * 8);
+    checkResult(res * 8);
 }
 
 void Task11::solverType4()
 {
     int resBit = getResult(number_.at(0), number_.at(1));
     int oneUser = 8 * ( number_.at(3) / number_.at(2) );
-    checkBit(oneUser - resBit);
+    checkResult(oneUser - resBit);
 }
 
 //generate vector alphabet for type3 and type4 task

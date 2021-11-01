@@ -78,35 +78,13 @@ Type DataTask::getTypeFromString(const std::string &strType)
     return typeDefault;
 }
 
-void DataTask::putTableAnswer(Type type, std::vector<int> vectorNumber)
+void DataTask::putTableAnswer(std::vector<int> vectorNumber)
 {
     std::string query = "insert into answer_task values(" + std::to_string(id) + "," + std::to_string(id) + "," + std::to_string(vectorNumber.back()) + "," + " ' ";
     for (int i = 0; i < vectorNumber.size() - 1; ++i) {
         query = query + std::to_string(vectorNumber.at(i)) + " ";
     }
     query = query + " ' " + "," + + " ' " + sizeType + " ' " + ");";
-//    switch (type) {
-//        case type1: {
-//
-//            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
-//            break;
-//        }
-//        case type2: {
-//            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " " + std::to_string(number_.at(2)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
-//            break;
-//        }
-//        case type3: {
-//            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " " + std::to_string(number_.at(2)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
-//            break;
-//        }
-//        case type4: {
-//            query = query + " ' " + std::to_string(number_.at(0)) + " " + std::to_string(number_.at(1)) + " " + std::to_string(number_.at(2)) + " " + std::to_string(number_.at(3)) + " ' " + "," + " ' " + table->sizeType + " ' " + ");";
-//            break;
-//        }
-//        default:
-//            break;
-//    }
-    const std::string constQuery = query;
     std::unique_ptr<MySQLStatement> ptr = db.compileStatement(query.c_str(), 200);
 }
 

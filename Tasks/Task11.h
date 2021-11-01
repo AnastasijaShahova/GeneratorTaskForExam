@@ -8,7 +8,7 @@ public:
     Task11(int num);
     void solutionTask(Type type) override;
     int getResult(int number1, int number2);
-    void checkBit(int result) override;
+    void checkResult(int result) override;
     void solverType1();
     void solverType2();
     void solverType3();
@@ -18,7 +18,7 @@ public:
 private:
     //end vector keeps answer
     std::vector<int> number_;
-    std::unique_ptr<DataTask> table ;
+//    std::unique_ptr<DataTask> table ;
 };
 
 #endif //UNTITLED5_TASK11_H

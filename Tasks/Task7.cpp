@@ -2,7 +2,7 @@
 
 Task7::Task7(int num)
 {
-    table = std::make_unique<DataTask>(num);
+    initializedTable(num);
 }
 
 void Task7::solutionTask(Type type)
@@ -62,14 +62,14 @@ void Task7::solverType2()
     }
     int byte = number_.at(1) / 8;
     double result = (number_.at(2) * pow(2, 20)) / (byte * number_.at(0) * 1000);
-    checkBit(round(result));
+    checkResult(round(result));
 }
 
 void Task7::solverType3()
 {
     int t0 = ( number_.at(3) * pow(2, 20) ) /  pow(2, number_.at(0));
     int t1 = ( number_.at(2) * pow(2, 23) ) /  pow(2, number_.at(0));
-    checkBit(t0 + t1);
+    checkResult(t0 + t1);
 }
 
 void Task7::solverType4()
@@ -83,10 +83,10 @@ void Task7::solverType4()
     else {
         result = methodB - methodA;
     }
-    checkBit(result);
+    checkResult(result);
 }
 
-void Task7::checkBit(int result)
+void Task7::checkResult(int result)
 {
     if (table->getTypeFromString(table->getTypeTask()) == type1) {
         if (fmod(result, 8) == 0) {
@@ -114,5 +114,5 @@ void Task7::checkBit(int result)
         number_.push_back(result);
         table->setSizeType(SEC);
     }
-    table->putTableAnswer(table->getTypeFromString(table->getTypeTask()), number_);
+    table->putTableAnswer(number_);
 }

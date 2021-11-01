@@ -142,7 +142,7 @@ std::vector<int> AlgorithmDijkstra::path(int source, int target)
 
         const std::vector<GraphAttributes> &neighbors = g->neighbors(u); // get all neighbors of "u"
         for (auto &neighbor : neighbors) // iterate over neighbors
-            {
+        {
             int v = neighbor.vertex;
             int weight = neighbor.weight;
             int distance_through_u = dist + weight; // calcualate the cost
@@ -152,7 +152,7 @@ std::vector<int> AlgorithmDijkstra::path(int source, int target)
                 previous[v] = u;
                 vertex_queue.push(std::make_pair(minDistance[v], v)); // push on top of heap the most "effective" vertex
             }
-            }
+        }
     }
     // retrieve the path vertices
     int targetVertex = target;
