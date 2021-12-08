@@ -78,5 +78,5 @@ void Task1::checkResult(int result)
         checkResult(result);
     }
     number_.push_back(result);
-    table->putTableAnswer(table->getTypeFromString(table->getTypeTask()), number_);
+    table->putTableAnswer(number_);
 }
