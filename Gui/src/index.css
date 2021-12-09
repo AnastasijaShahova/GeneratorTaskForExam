@@ -1,0 +1,60 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+html {
+    background-color: rgb(133, 228, 154);
+}
+
+input.green-input {
+    border-bottom: 1px solid #fff !important;
+    box-shadow: 0 1px 0 0 #fff !important;
+}
+
+input.green-input + label {
+    color: #ffffff !important;
+}
+
+input.green-input:focus {
+    border-bottom: 1px solid #05d454 !important;
+    box-shadow: 0 1px 0 0 #05d454 !important;
+}
+
+.row a {
+    justify-content: center;
+}
+
+
+.block {
+    background: url("images/mainPageImg.jpeg") 0 0/100% 100% no-repeat;
+
+    backdrop-filter: blur(50px);
+    border-radius: 25px;
+    height: 100%;
+}
+
+.imgBlockContent {
+    width: 500px;
+    height: 600px;
+    width: 90%;
+    margin: 2rem auto;
+}
+
+.blur {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(4px);
+    width: 100%;
+    height: 100%;
+}
+
+.setCenter {
+    margin-top: 120px;
+}
+
+.setCenter p {
+    margin: 50px 0;
+}
+
+.authBtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
