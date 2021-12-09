@@ -5,7 +5,6 @@
 using namespace restbed;
 
 class IResourceFactory {
-
 public:
     virtual std::shared_ptr<Resource> get_resource() const = 0;
 };

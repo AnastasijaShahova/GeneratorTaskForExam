@@ -10,7 +10,7 @@ public:
     TaskService(
             std::shared_ptr<IResourceFactory> resource_factory,
             std::shared_ptr<IServiceSettings> settings_factory);
-    void start() final;
+    void start() override;
 private:
     Service service_;
     std::shared_ptr<IServiceSettings> settings_factory_;

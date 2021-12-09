@@ -1,11 +1,11 @@
 #include "TaskResourceFactory.h"
 #include <sstream>
-#include <iomanip>
 #include "../json.hpp"
 
 TaskResourceFactory::TaskResourceFactory()
 {
     resource_ = std::make_shared<Resource>();
+    resource_->set_path( "/resource" );
     resource_->set_method_handler("GET",
                                   [&](const auto session) {
         get_handler(session);
@@ -33,8 +33,7 @@ float TaskResourceFactory::foo(float num1, float num2, std::string operation)
     }
 }
 
-std::tuple<float, float, std::string> TaskResourceFactory::get_path_parameters(
-        const std::shared_ptr<Session> session) const
+std::tuple<float, float, std::string> TaskResourceFactory::get_path_parameters(const std::shared_ptr<Session> session) const
 {
     const auto& request = session->get_request();
     const auto operation = request->get_path_parameter("operation");
@@ -58,6 +57,7 @@ void TaskResourceFactory::get_handler(const std::shared_ptr<Session> session)
     const auto [num1, num2, operation] = get_path_parameters(session);
     auto result = foo(num1, num2, operation);
     auto content = to_json(result);
-    session->close(OK, content,
-                   {{"Content-Length", std::to_string(content.size())}});
+//    session->close(OK, content,
+//                   {{"Content-Length", std::to_string(content.size())}});
+session->close( OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } } );
 }

@@ -6,7 +6,7 @@
 class ServiceSettingFactory : public IServiceSettings{
 public:
     ServiceSettingFactory();
-    std::shared_ptr<Settings> get_settings() const final;
+    std::shared_ptr<Settings> get_settings() const override;
 
 private:
     std::shared_ptr<Settings> settings_;

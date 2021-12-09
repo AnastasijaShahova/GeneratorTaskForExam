@@ -8,6 +8,18 @@
 #include "Rest/TaskService.h"
 #include "Rest/ServiceSettingFactory.h"
 
+using namespace std;
+using namespace restbed;
+
+void get_method_handler( const shared_ptr< Session > session )
+{
+    session->close( OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } } );
+}
+
+void service_ready_handler( Service& )
+{
+    fprintf( stderr, "Hey! The service is up and running." );
+}
 int main() {
 
         //генерируется рандомное число,потом по этому числу определяется тип задания
@@ -28,11 +40,8 @@ int main() {
 //                std::cout << "Path cost: " << sp.pathSize(1, 0) << std::endl;
 //    return 0;
 
-auto calc_resource_factory = std::make_shared<TaskResourceFactory>();
-auto calc_service_settings_factory = std::make_shared<ServiceSettingFactory>();
-TaskService calc_service {calc_resource_factory, calc_service_settings_factory};
-
-//calc_service.start();
+TaskService calc_service(std::make_shared<TaskResourceFactory>(), std::make_shared<ServiceSettingFactory>());
+calc_service.start();
 
 return EXIT_SUCCESS;
 
