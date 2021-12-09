@@ -12,8 +12,8 @@ public:
             std::shared_ptr<IServiceSettings> settings_factory);
     void start() final;
 private:
-    Service service;
-    std::shared_ptr<IServiceSettings> settings_factory;
+    Service service_;
+    std::shared_ptr<IServiceSettings> settings_factory_;
 };
 
 

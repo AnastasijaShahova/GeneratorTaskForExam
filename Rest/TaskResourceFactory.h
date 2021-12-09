@@ -10,10 +10,10 @@ public:
 private:
     float foo(float num1, float num2, std::string operation);
     std::tuple<float, float, std::string>
-    get_path_parameters(const shared_ptr<Session> session) const;
+    get_path_parameters(const std::shared_ptr<Session> session) const;
     std::string to_json(float result);
-    void get_handler(const shared_ptr<Session> session);
-    std::shared_ptr<Resource> resource;
+    void get_handler(const std::shared_ptr<Session> session);
+    std::shared_ptr<Resource> resource_;
 };
 
 

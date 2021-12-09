@@ -9,7 +9,7 @@ public:
     std::shared_ptr<Settings> get_settings() const final;
 
 private:
-    std::shared_ptr<Settings> settings;
+    std::shared_ptr<Settings> settings_;
 };
 
 

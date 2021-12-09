@@ -5,8 +5,8 @@
 
 TaskResourceFactory::TaskResourceFactory()
 {
-    resource = std::make_shared<Resource>();
-    resource->set_method_handler("GET",
+    resource_ = std::make_shared<Resource>();
+    resource_->set_method_handler("GET",
                                   [&](const auto session) {
         get_handler(session);
     });
@@ -14,10 +14,11 @@ TaskResourceFactory::TaskResourceFactory()
 
 std::shared_ptr<Resource> TaskResourceFactory::get_resource() const
 {
-    return resource;
+    return resource_;
 }
 
-float TaskResourceFactory::foo(float num1, float num2, std::string operation) {
+float TaskResourceFactory::foo(float num1, float num2, std::string operation)
+{
     if(operation == "add") {
         return num1 + num2;
     }
@@ -33,7 +34,7 @@ float TaskResourceFactory::foo(float num1, float num2, std::string operation) {
 }
 
 std::tuple<float, float, std::string> TaskResourceFactory::get_path_parameters(
-        const shared_ptr<Session> session) const
+        const std::shared_ptr<Session> session) const
 {
     const auto& request = session->get_request();
     const auto operation = request->get_path_parameter("operation");
@@ -52,11 +53,11 @@ std::string TaskResourceFactory::to_json(float result)
     return jsonResult.dump();
 }
 
-void TaskResourceFactory::get_handler(const shared_ptr<Session> session)
+void TaskResourceFactory::get_handler(const std::shared_ptr<Session> session)
 {
     const auto [num1, num2, operation] = get_path_parameters(session);
-    auto result = calculate(num1, num2, operation);
+    auto result = foo(num1, num2, operation);
     auto content = to_json(result);
     session->close(OK, content,
-                   {{"Content-Length", to_string(content.size())}});
+                   {{"Content-Length", std::to_string(content.size())}});
 }
