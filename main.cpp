@@ -1,18 +1,48 @@
 #include <iostream>
 #include "Tasks/Task11.h"
 #include "Tasks/Task7.h"
+#include "Tasks/Task1.h"
+#include "Utils/AlgorithmDijkstra.h"
+#include "Utils/GenerateMatrix.h"
+#include "Rest/TaskResourceFactory.h"
+#include "Rest/TaskService.h"
+#include "Rest/ServiceSettingFactory.h"
 
+using namespace std;
+using namespace restbed;
+
+void get_method_handler( const shared_ptr< Session > session )
+{
+    session->close( OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } } );
+}
+
+void service_ready_handler( Service& )
+{
+    fprintf( stderr, "Hey! The service is up and running." );
+}
 int main() {
-
-        //генерируется номер(id)
-        int r = rand() % 4;
 
         //генерируется рандомное число,потом по этому числу определяется тип задания
 //        Task11 task(4);
 //        task.solutionTask(type2);
 
-        Task7 task7(6);
-        task7.solutionTask(type2);
+//        Task7 task7(6);
+//        task7.solutionTask(type2);
 
-    return 0;
+//Task1 task1(6,7);
+//task1.solutionTask(type1);
+
+//        GenerateMatrix gen(6);
+//        gen.randomGenerateDirectedGraph( 0,47);
+//        AlgorithmDijkstra sp(&gen.getG());
+//        gen.getG().print();
+//                auto path = sp.path(1, 0);
+//                std::cout << "Path cost: " << sp.pathSize(1, 0) << std::endl;
+//    return 0;
+
+TaskService calc_service(std::make_shared<TaskResourceFactory>(), std::make_shared<ServiceSettingFactory>());
+calc_service.start();
+
+return EXIT_SUCCESS;
+
 }
