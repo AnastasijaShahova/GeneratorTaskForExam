@@ -8,15 +8,21 @@ struct users {
     int id;
     std::string name;
     std::string password;
+    bool loginSuccesfull = false;
+    std::string message;
 };
 
 class LogIn {
 public:
-    LogIn(std::string password_, std::string login_);
-    bool checkLogin();
+    LogIn();
+    LogIn(const std::string& password_, const std::string& login_);
+    void checkLogin();
+
+    const users &getUsersData() const;
+    void setUsersData(const std::string& login_,const std::string& password);
+
 
 private:
-    bool loginSuccesfull = false;
     users usersData;
     MySQLDatabase db;
 };
