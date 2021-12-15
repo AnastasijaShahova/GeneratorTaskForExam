@@ -17,7 +17,6 @@ public:
     void solverType2();
     void solverType3();
     void checkResult(int result) override;
-
 private:
     std::vector<int> number_;
 

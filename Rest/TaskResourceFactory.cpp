@@ -4,8 +4,9 @@
 
 TaskResourceFactory::TaskResourceFactory()
 {
+    userAuth = std::make_unique<LogIn>();
     resource_ = std::make_shared<Resource>();
-    resource_->set_path( "/resource" );
+    resource_->set_path( "/auth/login");
     resource_->set_method_handler("GET",
                                   [&](const auto session) {
         get_handler(session);
@@ -17,47 +18,31 @@ std::shared_ptr<Resource> TaskResourceFactory::get_resource() const
     return resource_;
 }
 
-float TaskResourceFactory::foo(float num1, float num2, std::string operation)
-{
-    if(operation == "add") {
-        return num1 + num2;
-    }
-    else if(operation == "subtract") {
-        return num1 - num2;
-    }
-    else if(operation == "multiply") {
-        return num1 * num2;
-    }
-    else if(operation == "divide") {
-        return num1 / num2;
-    }
-}
-
-std::tuple<float, float, std::string> TaskResourceFactory::get_path_parameters(const std::shared_ptr<Session> session) const
+std::tuple<std::string, std::string> TaskResourceFactory::get_path_parameters(const std::shared_ptr<Session> session) const
 {
     const auto& request = session->get_request();
-    const auto operation = request->get_path_parameter("operation");
-    auto num1 = atof(request->get_path_parameter("num1").c_str());
-    auto num2 = atof(request->get_path_parameter("num2").c_str());
-    return make_tuple(num1, num2, operation);
+    const auto login = request->get_path_parameter("login").c_str();
+    const auto password = request->get_path_parameter("password").c_str();
+    return std::make_tuple(login, password);
 }
 
-std::string TaskResourceFactory::to_json(float result)
+std::string TaskResourceFactory::to_json(std::unique_ptr<LogIn> userData)
 {
-    std::ostringstream str_stream;
-    str_stream << result;
     nlohmann::json jsonResult = {
-            {"result", str_stream.str()}
+            {"userData",  userData->getUsersData().name},
+            {"password",  userData->getUsersData().password },
+            {"status", userData->getUsersData().loginSuccesfull},
+            {"message",   userData->getUsersData().message}
     };
     return jsonResult.dump();
 }
 
 void TaskResourceFactory::get_handler(const std::shared_ptr<Session> session)
 {
-    const auto [num1, num2, operation] = get_path_parameters(session);
-    auto result = foo(num1, num2, operation);
-    auto content = to_json(result);
-//    session->close(OK, content,
-//                   {{"Content-Length", std::to_string(content.size())}});
-session->close( OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } } );
+    const auto [login, password] = get_path_parameters(session);
+    userAuth->setUsersData(login, password);
+    userAuth->checkLogin();
+    auto content = to_json(std::move(userAuth));
+    session->close(OK, content,
+                   {{"Content-Length", std::to_string(content.size())}});
 }
