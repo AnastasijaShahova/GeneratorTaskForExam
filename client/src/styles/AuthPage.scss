@@ -5,9 +5,8 @@
     flex-direction: column;
 
     .authpage__content {
-        flex: 2.5;
+        flex: 4;
         display: flex;
-        position: relative;
 
         .authpage__content__authimg {
             flex: 1;
@@ -24,15 +23,12 @@
         }
 
         .authpage__content__info {
-            flex: 2;
+            flex: 1.2;
             display: flex;
-            align-items: center;
-            position: relative;
+            justify-content: center;
+
             .authpage__content__info__inputs {
-                position: absolute;
-                bottom: 0;
-                right: 0;
-                margin: 40px;
+                align-self: flex-end;
                 input {
                     background: #e8e8fa;
                     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -40,11 +36,31 @@
                 }
 
                 h4 {
+                    color: white;
                     margin-bottom: 40px;
+                }
+
+                .button_field {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 20px;
+                    border-radius: 15px;
                 }
             }
 
             .authpage__content__info__title {
+                align-self: center;
+                color: white;
+                margin-bottom: 150px;
+
+                h1 {
+                    font-size: 60px;
+                    line-height: 101px;
+                }
+
+                h4 {
+                    margin-left: 40px;
+                }
             }
         }
 
@@ -52,6 +68,8 @@
             position: absolute;
             top: 0;
             right: 0;
+            margin: 30px;
+            color: white
         }
     }
 
