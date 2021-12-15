@@ -1,14 +1,10 @@
 #include "DataTask.h"
 
-const std::string host = "localhost";
-const std::string user = "root";
-const std::string password = "JzxU8d3s";
-const std::string dbName = "ashahowa";
-int port = 3306;
+
 
 DataTask::DataTask(int num)
 {
-    db.init(host, user,password,dbName,port);
+    db.init();
     passId(num);
     passQueryType();
     passNumberTask();

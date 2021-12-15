@@ -14,13 +14,10 @@ struct users {
 
 class LogIn {
 public:
-    LogIn();
-    LogIn(const std::string& password_, const std::string& login_);
+    LogIn(std::tuple<std::string, std::string> tyrple);
+
     void checkLogin();
-
     const users &getUsersData() const;
-    void setUsersData(const std::string& login_,const std::string& password);
-
 
 private:
     users usersData;
