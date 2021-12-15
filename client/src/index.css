@@ -1,9 +1,5 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
-html {
-    background-color: rgb(133, 228, 154);
-}
-
 input.green-input {
     border-bottom: 1px solid #fff !important;
     box-shadow: 0 1px 0 0 #fff !important;
@@ -24,8 +20,6 @@ input.green-input:focus {
 
 
 .block {
-    background: url("images/mainPageImg.jpeg") 0 0/100% 100% no-repeat;
-
     backdrop-filter: blur(50px);
     border-radius: 25px;
     height: 100%;

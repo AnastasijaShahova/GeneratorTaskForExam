@@ -1,6 +1,6 @@
 import "../index.css";
 
-export const MainPage = () => {
+export const AuthPage = () => {
     return (
         <div className="row">
             <h2 className="center-align" style={{ color: "#512da8" }}>

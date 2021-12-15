@@ -1,0 +1,76 @@
+.authpage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .authpage__content {
+        flex: 2.5;
+        display: flex;
+        position: relative;
+
+        .authpage__content__authimg {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .authpage__content__authimg__img {
+                background-color: red;
+                width: 400px;
+                height: 400px;
+                background: url("../images/authImg.jpg") 0 0/100% 100% no-repeat;
+            }
+        }
+
+        .authpage__content__info {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            position: relative;
+            .authpage__content__info__inputs {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                margin: 40px;
+                input {
+                    background: #e8e8fa;
+                    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    border-radius: 4px;
+                }
+
+                h4 {
+                    margin-bottom: 40px;
+                }
+            }
+
+            .authpage__content__info__title {
+            }
+        }
+
+        p {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+
+    .authpage__footer {
+        flex: 1;
+        background-color: #e5e5e5;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+
+        .authpage__footer__item {
+            width: 250px;
+            height: 130px;
+            background: #e8e8fa;
+            border: 0.3px solid rgba(94, 25, 148, 0.94);
+            box-sizing: border-box;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+        }
+    }
+}
