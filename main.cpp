@@ -11,11 +11,6 @@
 using namespace std;
 using namespace restbed;
 
-void get_method_handler( const shared_ptr< Session > session )
-{
-    const auto login = session->get_request()->get_path_parameter("login").c_str();
-    session->close( OK, login, { { "Content-Length", "13" }, { "Connection", "close" } } );
-}
 
 int main() {
 

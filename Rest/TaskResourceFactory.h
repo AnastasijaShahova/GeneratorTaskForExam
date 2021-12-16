@@ -14,7 +14,7 @@ public:
 private:
     std::tuple<std::string, std::string>get_path_parameters(const std::shared_ptr<Session> session) const;
     std::string to_json(LogIn userData);
-    std::tuple<std::string, std::string> from_json(nlohmann::json jsonObj);
+    std::tuple<std::string, std::string> from_json(const Bytes& body);
 
     void get_handler(const std::shared_ptr<Session> session);
     std::shared_ptr<Resource> resource_;

@@ -16,12 +16,12 @@ class LogIn {
 public:
     LogIn(std::tuple<std::string, std::string> tyrple);
 
+
     void checkLogin();
     const users &getUsersData() const;
 
 private:
     users usersData;
-    MySQLDatabase db;
 };
 
 
