@@ -12,7 +12,7 @@ export const useHttp = (setModal) => {
             try {
                 if (body) {
                     body = JSON.stringify(body);
-                    headers["Content-Type"] = "application/json";
+                    headers["Content-Type"] = "text/plain";
                 }
                 const response = await fetch(url, {
                     method,
@@ -20,19 +20,16 @@ export const useHttp = (setModal) => {
                     headers,
                 })
 
-                console.log('server data', response)
 
-                const data = response;
-
-                // const data = await response.json();
-                // if (!response.ok) {
-                //     setModal({
-                //         active: true,
-                //         content: data.message
-                //     })
-                //     setError(data.message);                    
-                // }
-                // setLoading(false);
+                const data = await response.json();
+                if (!response.ok) {
+                    setModal({
+                        active: true,
+                        content: data.message
+                    })
+                    setError(data.message);
+                }
+                setLoading(false);
 
                 return data;
             } catch (err) {
