@@ -21,14 +21,14 @@ export const useHttp = (setModal) => {
                 })
 
                 const data = await response.json();
-                if (!response.ok) {
-                    setModal({
-                        active: true,
-                        content: data.message
-                    })
-                    setError(data.message);                    
-                }
-                setLoading(false);
+                // if (!response.ok) {
+                //     setModal({
+                //         active: true,
+                //         content: data.message
+                //     })
+                //     setError(data.message);                    
+                // }
+                // setLoading(false);
 
                 return data;
             } catch (err) {

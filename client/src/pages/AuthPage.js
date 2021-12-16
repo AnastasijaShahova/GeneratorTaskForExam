@@ -18,7 +18,9 @@ const AuthPage = () => {
             email,
             password,
         });
-        console.log(data)
+        console.log('string data', data)
+        const jsonData = JSON.parse(data)
+        console.log('jsonData', jsonData)
     };
 
     return (
