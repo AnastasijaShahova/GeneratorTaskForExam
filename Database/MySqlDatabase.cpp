@@ -493,13 +493,13 @@ MySQLDatabase::~MySQLDatabase()
     MySQLDatabase::closeDatabase();
 }
 
-void MySQLDatabase::init(const std::string &host, const std::string &user, const std::string &password, const std::string &dbName, int port)
+void MySQLDatabase::init()
 {
-    host_ = host;
-    port_ = port;
-    dbName_ = dbName;
-    login_ = user;
-    pwd_ = password;
+    host_ = "localhost";
+    port_ = 3306;
+    dbName_ = "ashahowa";
+    login_ = "root";
+    pwd_ = "JzxU8d3s";
     timeout_ = static_cast<unsigned int>(1000);
     connect();
 }

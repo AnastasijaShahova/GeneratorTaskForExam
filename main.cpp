@@ -11,15 +11,7 @@
 using namespace std;
 using namespace restbed;
 
-void get_method_handler( const shared_ptr< Session > session )
-{
-    session->close( OK, "Hello, World!", { { "Content-Length", "13" }, { "Connection", "close" } } );
-}
 
-void service_ready_handler( Service& )
-{
-    fprintf( stderr, "Hey! The service is up and running." );
-}
 int main() {
 
         //генерируется рандомное число,потом по этому числу определяется тип задания

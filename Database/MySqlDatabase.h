@@ -11,6 +11,7 @@
 using namespace std::literals::chrono_literals;
 class MySQLDatabase;
 
+
 class MySQLStatement {
 public:
     MySQLStatement(MySQLDatabase &db, const char *sql, const uint32_t prefetchRows);
@@ -97,7 +98,7 @@ public:
     MySQLDatabase();
     ~MySQLDatabase() ;
 
-    void init(const std::string &host, const std::string &user, const std::string &password, const std::string &dbName, int port);
+    void init();
     std::unique_ptr<MySQLTransaction> createTransaction();
     bool haveOpenTransaction() const;
     void closeDatabase() ;
