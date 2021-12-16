@@ -20,7 +20,11 @@ export const useHttp = (setModal) => {
                     headers,
                 })
 
-                const data = await response.json();
+                console.log('server data', response)
+
+                const data = response;
+
+                // const data = await response.json();
                 // if (!response.ok) {
                 //     setModal({
                 //         active: true,
