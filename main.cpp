@@ -7,7 +7,8 @@
 #include "Rest/LoginResourceFactory.h"
 #include "Rest/TaskService.h"
 #include "Rest/ServiceSettingFactory.h"
-#include "Database/TaskLabel.h"
+#include "Rest/TaskLabelResourceFactory.h"
+
 
 
 using namespace std;
@@ -34,7 +35,7 @@ int main() {
 //                std::cout << "Path cost: " << sp.pathSize(1, 0) << std::endl;
 //    return 0;
 
-TaskService calc_service(std::make_shared<LoginResourceFactory>(), std::make_shared<ServiceSettingFactory>());
+TaskService calc_service(std::make_shared<TaskLabelResourceFactory>(), std::make_shared<ServiceSettingFactory>());
 calc_service.start();
 
 return EXIT_SUCCESS;

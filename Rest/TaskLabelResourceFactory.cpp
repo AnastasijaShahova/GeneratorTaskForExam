@@ -18,15 +18,13 @@ std::shared_ptr<Resource> TaskLabelResourceFactory::get_resource() const
 
 std::string TaskLabelResourceFactory::to_json(std::vector<textLabel> txtLbl)
 {
-    nlohmann::json jsonResult;
-    for ( auto it = txtLbl.begin(); it != txtLbl.end(); ++it) {
-        jsonResult["object"] = { {"id", it->id},
-                                 {"text", it->textLabel_},
-                                 {"number", it->numberTask} };
-//        jsonResult = R"({ "id": [it->id],
-//                                     "text": [it->textLabel_],
-//                                     "number": [it->numberTask]
-//        };)"
+    nlohmann::json jsonResult = nlohmann::json::array();
+    for ( auto it = txtLbl.begin(); it != txtLbl.end(); ++it ) {
+        jsonResult.push_back({ {"id", it->id},
+                                    {"text", it->textLabel_},
+                                    {"number", it->numberTask}
+                                  }
+                             );
     }
     return jsonResult.dump();
 }
