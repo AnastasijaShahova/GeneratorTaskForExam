@@ -1,0 +1,85 @@
+.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: radial-gradient(
+        59.87% 59.87% at 48.06% 40.13%,
+        rgba(94, 25, 148, 0.94) 0%,
+        rgba(41, 8, 135, 0.88) 75.52%
+    );
+    background-blend-mode: darken;
+
+    width: 100vw;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .navbar__logo {
+        color: white;
+        margin-bottom: 70px;
+        margin-left: 20px;
+        font-family: Offside;
+    }
+
+    .navbar__profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 300px;
+
+        .navbar__profile__info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: white;
+            height: 120px;
+            flex: 2;
+            border: 1px solid black;
+
+            .navbar__profile__info__name {
+                margin-top: 25px;
+                p {
+                    margin: 0;
+                }
+            }
+
+            .navbar__profile__info__icon {
+                margin-top: 20px;
+            }
+        }
+
+        .navbar__profile__logout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            background-color: rgb(130, 21, 231);
+            height: 50px;
+            border-radius: 10px;
+            border: none;
+            margin: 10px;
+        }
+    }
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4caf50;
+}

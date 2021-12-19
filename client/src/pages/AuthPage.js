@@ -14,15 +14,15 @@ const AuthPage = () => {
     const navigate = useNavigate();
 
     const login = async () => {
-        const data = await request("/auth/login", "POST", {
+        const data = await request("http://localhost:4000/auth/login", "POST", {
             email,
             password,
         });
         console.log(password)
         console.log(email)
         console.log('string data', data)
-        const jsonData = JSON.parse(data)
-        console.log('jsonData', jsonData)
+        // const jsonData = JSON.parse(data)
+        // console.log('jsonData', jsonData)
     };
 
     return (

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useRoutes } from "./routes";
-import { Navbar } from "./components/Navbar";
-import "materialize-css";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
+import AuthModal from "./components/AuthModal";
+import Navbar from "./components/Navbar"
 import "./App.scss"
-import AuthModal from "./components/ErrorModal";
+import "materialize-css";
 
 function App() {
     const [modal, setModal] = useState({
@@ -15,8 +15,9 @@ function App() {
     });
 
     const { token, login, logout, userId } = useAuth(setModal);
-    const isAuth = !!token;
-    const routes = useRoutes(isAuth);
+    // const isAuth = !!token;
+    const isAuth = true
+    const routes = useRoutes(true);
 
     return (
         <AuthContext.Provider
@@ -30,7 +31,7 @@ function App() {
         >
             <Router>
                 {isAuth && <Navbar />}
-                <div className="app">
+                <div className={`app ${isAuth ? 'white' : 'violet'}`}>
                     {routes}
                     <AuthModal
                         active={modal.active}
