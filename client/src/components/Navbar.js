@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.scss";
 import { BsPersonSquare } from "react-icons/bs";
 
-const Navbar = () => {
+const Navbar = ({userName, userRole}) => {
     const history = useNavigate();
 
     const logoutHandler = (event) => {
@@ -20,11 +20,17 @@ const Navbar = () => {
                         <BsPersonSquare fontSize="3em" />
                     </div>
                     <div className="navbar__profile__info__name">
-                        <p>Иванов И. И.</p>
-                        <p style={{ marginLeft: "15px" }}>ученик</p>
+                        <p>{userName}</p>
+                        <p>{userRole}</p>
                     </div>
+
+                    <button
+                        className="navbar__profile__logout"
+                        onClick={logoutHandler}
+                    >
+                        Выйти
+                    </button>
                 </div>
-                <button className="navbar__profile__logout" onClick={logoutHandler}>Выйти</button>
             </div>
         </div>
     );

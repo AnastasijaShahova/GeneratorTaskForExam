@@ -11,7 +11,7 @@
     background-blend-mode: darken;
 
     width: 100vw;
-    height: 120px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,22 +31,32 @@
 
         .navbar__profile__info {
             display: flex;
-            flex-direction: row;
+            flex-wrap: wrap;
             justify-content: space-around;
             background-color: white;
-            height: 120px;
+            height: 150px;
             flex: 2;
             border: 1px solid black;
 
             .navbar__profile__info__name {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                flex-basis: 60%;
                 margin-top: 25px;
                 p {
+                    align-self: center;
                     margin: 0;
+                    margin-bottom: 5px;
                 }
             }
 
             .navbar__profile__info__icon {
                 margin-top: 20px;
+            }
+
+            button {
+                flex-basis: 50%;
             }
         }
 
@@ -58,28 +68,10 @@
             background-color: rgb(130, 21, 231);
             height: 50px;
             border-radius: 10px;
+           
             border: none;
             margin: 10px;
         }
     }
 }
 
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: #111;
-}
-
-.active {
-    background-color: #4caf50;
-}

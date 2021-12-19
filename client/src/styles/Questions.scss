@@ -1,0 +1,22 @@
+.questions {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+    // width: 100vw;
+    .questions__item {
+        width: 700px;
+        margin: 20px;
+        p {
+            white-space: normal;
+
+            font-size: 28px;
+        }
+
+        input {
+            background: #e8e8fa;
+            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 4px;
+        }
+    }
+}

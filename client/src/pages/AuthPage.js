@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import "../styles/AuthPage.scss";
@@ -11,16 +10,22 @@ const AuthPage = () => {
     const auth = useContext(AuthContext);
     const { request } = useHttp(auth.setModal);
 
-    const navigate = useNavigate();
-
     const login = async () => {
-        const data = await request("http://127.0.0.1:3001/auth/login", "POST", {
-            email,
-            password,
-        });
-        console.log(data)
-        // const jsonData = JSON.parse(data)
-        // console.log('jsonData', jsonData)
+        try {
+            const data = await request(
+                "http://127.0.0.1:3001/auth/login",
+                "POST",
+                {
+                    email,
+                    password,
+                },
+            );
+            if (data.status) {
+                auth.login(data.name, data.userId, "ученик");
+            }
+        } catch (err) {
+            console.log("Login error", err);
+        }
     };
 
     return (

@@ -14,7 +14,7 @@ function App() {
         content: "",
     });
 
-    const { token, login, logout, userId } = useAuth(setModal);
+    const { name, login, logout, userId, role } = useAuth();
     // const isAuth = !!token;
     const isAuth = true
     const routes = useRoutes(true);
@@ -22,15 +22,16 @@ function App() {
     return (
         <AuthContext.Provider
             value={{
-                token,
+                name,
                 login,
                 logout,
                 userId,
                 isAuth,
+                role
             }}
         >
             <Router>
-                {isAuth && <Navbar />}
+                {isAuth && <Navbar userName={name} userRole={role}/>}
                 <div className={`app ${isAuth ? 'white' : 'violet'}`}>
                     {routes}
                     <AuthModal
