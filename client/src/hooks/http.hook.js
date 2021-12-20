@@ -19,8 +19,6 @@ export const useHttp = (setModal) => {
                     body,
                     headers,
                 })
-                console.log(response)
-
 
                 const data = await response.json();
                 if (!response.ok) {

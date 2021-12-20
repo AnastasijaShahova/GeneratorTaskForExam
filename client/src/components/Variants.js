@@ -12,15 +12,13 @@ const Variants = () => {
 
     useEffect(async () => {
         try {
-            const data = await request("http://127.0.0.1:3001/topics");
-            console.log(data)
+            const data = await request("http://127.0.0.1:3001/topics?page=2");
             setTopics(data);
         } catch (err) {
             console.log("Get variants error", err);
         }
     }, []);
 
-    console.log(topics);
     return (
         <div className="variants">
             <h5>Конструктор вариантов по типам и темам</h5>

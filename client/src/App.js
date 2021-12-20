@@ -19,7 +19,6 @@ function App() {
     const isAuth = true;
     const routes = useRoutes(true);
 
-    console.log(name)
     return (
         <AuthContext.Provider
             value={{
