@@ -41,7 +41,7 @@ void TaskResourceFactory::get_handler(const std::shared_ptr<Session> session)
 int TaskResourceFactory::get_query_param(const std::shared_ptr<Session> session) const
 {
     const auto& request = session->get_request();
-    std::string param = request->get_query_parameter("topic_id");
+    std::string param = request->get_query_parameter("topicId");
     return std::stoi(param);
 }
 

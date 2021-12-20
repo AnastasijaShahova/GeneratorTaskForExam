@@ -39,7 +39,7 @@ const QuestionsPage = () => {
 
     useEffect(async () => {
         try {
-            const data = await request("http://127.0.0.1/questions?page=3&topicId=1");
+            const data = await request("http://127.0.0.1:3001/questions?topicId=11");
             setQuestions(data);
         } catch(err) {
             console.log("Question error ", err)
@@ -48,12 +48,12 @@ const QuestionsPage = () => {
 
     return (
         <div className="questions">
-            {questions.map((question) => (
+            {questions.map((question, index) => (
                 <div className="questions__item">
-                    <h3>Задание {question.type}</h3>
+                    <h3>Задание {question.number}</h3>
                     <div style={{whiteSpace: "normal", height: "400px"}}>
                         <p>
-                            {question.id}. {question.text}
+                            {index + 1}. {question.text}
                         </p>
                     </div>
 
