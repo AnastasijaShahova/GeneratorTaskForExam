@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.scss";
 import { BsPersonSquare } from "react-icons/bs";
+import {AuthContext} from "../context/AuthContext";
 
 const Navbar = ({userName, userRole}) => {
     const history = useNavigate();
+    const auth = useContext(AuthContext)
 
     const logoutHandler = (event) => {
         event.preventDefault();
-        history("/");
+        auth.logout()
+        history("/login");
     };
 
     return (

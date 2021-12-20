@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 const storageName = "userData";
 
 export const useAuth = () => {
-    const [name, setName] = useState("Настя");
+    const [name, setName] = useState("");
     const [userId, setUserId] = useState(null);
     const [role, setRole] = useState("ученик");
 

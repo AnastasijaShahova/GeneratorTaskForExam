@@ -35,7 +35,8 @@ int main() {
 //                std::cout << "Path cost: " << sp.pathSize(1, 0) << std::endl;
 //    return 0;
 
-TaskService calc_service(std::make_shared<TaskResourceFactory>(), std::make_shared<ServiceSettingFactory>());
+
+TaskService calc_service(std::make_shared<TaskLabelResourceFactory>(), std::make_shared<ServiceSettingFactory>());
 calc_service.start();
 
 //Task11 taskStruct(11);

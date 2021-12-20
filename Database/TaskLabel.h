@@ -10,7 +10,7 @@ struct textLabel {
     std::string textLabel_;
     int numberTask;
 //    textLabel(int id_, std::string txt, int number):
-//    id(std::move(id_)), textLabel_(std::move(txt)), numberTask(std::move(number)){}
+//    id(id_), textLabel_(std::move(txt)), numberTask(number){}
 };
 
 class TaskLabel {

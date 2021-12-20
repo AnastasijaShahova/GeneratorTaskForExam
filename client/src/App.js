@@ -15,10 +15,11 @@ function App() {
     });
 
     const { name, login, logout, userId, role } = useAuth();
-    // const isAuth = !!token;
-    const isAuth = true
+    // const isAuth = !!userId;
+    const isAuth = true;
     const routes = useRoutes(true);
 
+    console.log(name)
     return (
         <AuthContext.Provider
             value={{
