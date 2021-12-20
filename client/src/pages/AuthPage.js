@@ -13,7 +13,7 @@ const AuthPage = () => {
     const login = async () => {
         try {
             const data = await request(
-                "http://127.0.0.1:3001/auth/login",
+                "http://127.0.0.1:3001/auth/login?page=1",
                 "POST",
                 {
                     email,
