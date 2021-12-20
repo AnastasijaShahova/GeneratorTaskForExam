@@ -2,7 +2,7 @@
 
 Task7::Task7(int num)
 {
-    initializedTable(num);
+//    initializedTable(num);
 }
 
 void Task7::solutionTask(Type type)
@@ -115,4 +115,9 @@ void Task7::checkResult(int result)
         table->setSizeType(SEC);
     }
     table->putTableAnswer(number_);
+}
+
+void Task7::createTask(int id, int number, std::string& text)
+{
+
 }

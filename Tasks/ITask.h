@@ -4,13 +4,13 @@
 #include "../Database/DataTask.h"
 #include "../Utils/RandomGenerator.h"
 
-#define BIT "битах"
-#define BYTE "байтах"
-#define MBYTE "мегабайтах"
-#define KBYTE "килобайтах"
-#define SEC "секундах"
-#define MIN "минутах"
-#define HOUR "часах"
+#define BIT " битах"
+#define BYTE " байтах"
+#define MBYTE " мегабайтах"
+#define KBYTE " килобайтах"
+#define SEC " секундах"
+#define MIN " минутах"
+#define HOUR " часах"
 
 
 class ITask {
@@ -20,11 +20,11 @@ public:
     int searchBit(int number);
     bool checkPower2(int number);
     virtual void checkResult(int result) = 0;
-    void initializedTable(int num);
+    virtual void createTask(int id, int number, std::string& text) = 0;
     virtual ~ITask() {}
 
     Distribution generator;
-    std::unique_ptr<DataTask> table;
+    std::vector<int> vectorId;
 };
 
 

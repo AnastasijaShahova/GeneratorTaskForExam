@@ -1,8 +1,8 @@
 #include "Task6.h"
 
-Task6::Task6(int num)
+Task6::Task6(int /*num*/)
 {
-    initializedTable(num);
+//    initializedTable(num);
 }
 
 void Task6::solutionTask(Type type)
@@ -70,6 +70,11 @@ void Task6::solverType2()
 }
 
 void Task6::solverType3()
+{
+
+}
+
+void Task6::createTask(int id, int number, std::string& text)
 {
 
 }

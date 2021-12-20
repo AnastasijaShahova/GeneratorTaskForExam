@@ -1,9 +1,9 @@
 #include "Task1.h"
 
-Task1::Task1(int graphSize, int num)
+Task1::Task1(int graphSize, int /* num*/)
 {
     matrix = std::make_unique<GenerateMatrix>(graphSize);
-    initializedTable(num);
+//    initializedTable(num);
 }
 
 void Task1::solutionTask(Type type)
@@ -79,4 +79,9 @@ void Task1::checkResult(int result)
     }
     number_.push_back(result);
     table->putTableAnswer(number_);
+}
+
+void Task1::createTask(int id, int number, std::string& text)
+{
+
 }

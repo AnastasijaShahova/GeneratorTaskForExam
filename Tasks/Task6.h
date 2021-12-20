@@ -17,10 +17,11 @@ public:
     void solverType2();
     void solverType3();
     void checkResult(int result) override;
+    void createTask(int id, int number, std::string& text) override;
+
 private:
     std::vector<int> number_;
-
-
+    std::unique_ptr<DataTask> table;
 };
 
 

@@ -13,10 +13,11 @@ public:
     void solverType3();
     void solverType4();
     void checkResult(int result) override;
+    void createTask(int id, int number, std::string& text) override;
 
 private:
     std::vector<int> number_;
-//    std::unique_ptr<DataTask> table;
+    std::unique_ptr<DataTask> table;
 };
 
 #endif //UNTITLED5_TASK7_H

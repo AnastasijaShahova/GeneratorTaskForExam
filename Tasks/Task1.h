@@ -13,13 +13,13 @@ public:
     void solverType3();
     void checkResult(int result) override;
     int algorithmD(int number1, int number2);
-
-
+    void createTask(int id, int number, std::string& text) override;
 
 
 private:
     std::unique_ptr<GenerateMatrix> matrix;
     std::vector<int> number_;
+    std::unique_ptr<DataTask> table;
 };
 
 

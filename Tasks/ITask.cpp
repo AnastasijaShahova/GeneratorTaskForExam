@@ -18,8 +18,5 @@ bool ITask::checkPower2(int number)
     return (number & (number - 1));
 }
 
-void ITask::initializedTable(int num)
-{
-    table = std::make_unique<DataTask>(num);
-}
+
 

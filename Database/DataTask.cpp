@@ -5,20 +5,35 @@
 DataTask::DataTask(int num)
 {
     db.init();
-    passId(num);
+}
+
+DataTask::DataTask(int numberTask, int id)
+{
+    db.init();
+    passId(id);
     passQueryType();
     passNumberTask();
     passTextTask();
     passTextQuestion();
 }
 
-void DataTask::passId(int num)
+void DataTask::passId(int id)
 {
-    const std::string query = "select id from task where id = " + std::to_string(num) + ";";
+    this->id = id;
+}
+
+std::vector<int> DataTask::getVectorId(int num)
+{
+    std::vector<int> vec;
+    const std::string query = "select id from task where number_task=" + std::to_string(num) + ";";
     std::unique_ptr<MySQLStatement> ptr =  db.compileStatement(query.c_str(), 100);
     if (!ptr->eof()) {
-        (*ptr)>>id;
+        for ( int i = 1 ; i <= countTypeTask(num); ++i) {
+            (*ptr)>>id;
+            vec.push_back(id);
+        }
     }
+    return vec;
 }
 
 void DataTask::passQueryType()
@@ -76,7 +91,7 @@ Type DataTask::getTypeFromString(const std::string &strType)
 
 void DataTask::putTableAnswer(std::vector<int> vectorNumber)
 {
-    std::string query = "insert into answer_task values(" + std::to_string(id) + "," + std::to_string(id) + "," + std::to_string(vectorNumber.back()) + "," + " ' ";
+    std::string query = "insert into answer_task(id_task, answer, parametrs,size_question) values(" + std::to_string(id) + "," + std::to_string(vectorNumber.back()) + "," + " ' ";
     for (int i = 0; i < vectorNumber.size() - 1; ++i) {
         query = query + std::to_string(vectorNumber.at(i)) + " ";
     }
@@ -113,3 +128,22 @@ void DataTask::setSizeType(const std::string &sizeType)
 {
     DataTask::sizeType = sizeType;
 }
+
+int DataTask::countTypeTask(int num)
+{
+    int count = 0;
+    const std::string query = "select count(id) from task where number_task = " + std::to_string(num) + ";";
+    std::unique_ptr<MySQLStatement> ptr =  db.compileStatement(query.c_str(), 100);
+    if (!ptr->eof()) {
+        (*ptr)>>count;
+    }
+    return count;
+}
+
+const std::string &DataTask::getSizeType()
+{
+    return sizeType;
+}
+
+
+

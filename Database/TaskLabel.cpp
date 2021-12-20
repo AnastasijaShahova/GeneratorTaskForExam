@@ -1,8 +1,5 @@
 #include "TaskLabel.h"
 
-TaskLabel::TaskLabel()
-{
-}
 
 void TaskLabel::getTextLabelFromDb(int id)
 {

@@ -14,11 +14,15 @@ public:
     void solverType3();
     void solverType4();
     void generationAlphabet(int count);
+    void createTask(int id, int number, std::string& text) override;
+    void replacementText(std::string& str);
+
 
 private:
     //end vector keeps answer
     std::vector<int> number_;
-//    std::unique_ptr<DataTask> table ;
+    std::unique_ptr<DataTask> table ;
+//    std::vector<taskStruct> taskVector;
 };
 
 #endif //UNTITLED5_TASK11_H

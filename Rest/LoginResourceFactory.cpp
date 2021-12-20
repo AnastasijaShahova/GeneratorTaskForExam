@@ -19,6 +19,7 @@ std::shared_ptr<Resource> LoginResourceFactory::get_resource() const
 std::string LoginResourceFactory::to_json(LogIn userData)
 {
 nlohmann::json jsonResult = nlohmann::json{{"email", userData.getUsersData().email},
+                                           {"userId", userData.getUsersData().id},
                                            {"status", userData.getUsersData().loginSuccesfull},
                                            {"password", userData.getUsersData().password},
                                            {"fio", userData.getUsersData().name},

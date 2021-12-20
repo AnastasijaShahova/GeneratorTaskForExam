@@ -3,7 +3,8 @@
 
 Task11::Task11(int num)
 {
-    initializedTable(num);
+    table = std::make_unique<DataTask>(11);
+    vectorId = table->getVectorId(num);
 }
 
 void Task11::solutionTask(Type type)
@@ -106,7 +107,7 @@ void Task11::solverType4()
     checkResult(oneUser - resBit);
 }
 
-//generate vector alphabet for type3 and type4 task
+//generate vector alphabet for type3 and type4 taskStruct
 void Task11::generationAlphabet(int count)
 {
     std::vector<char> alphabet;
@@ -115,7 +116,23 @@ void Task11::generationAlphabet(int count)
     }
 }
 
+void Task11::createTask(int id, int number, std::string& text)
+{
+    table = std::make_unique<DataTask>(number, id);
+    number_.clear();
+    solutionTask(table->getTypeFromString(table->getTypeTask()));
+    replacementText(text);
+}
 
-
+void Task11::replacementText(std::string& textTaskString)
+{
+    textTaskString = table->getTextTask();
+    textTaskString += table->getTextQuestion();
+    textTaskString += table->getSizeType();
+//    for (int j = 0;  j < number_.size() - 2; ++j) {
+//        int found = textTaskString.find('0');
+//        textTaskString.replace(found, std::to_string(number_[j]).length(), std::to_string(number_.at(j)));
+//    }
+}
 
 
