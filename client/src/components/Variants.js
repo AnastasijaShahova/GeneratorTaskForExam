@@ -5,19 +5,21 @@ import "../styles/Variants.scss";
 
 const Variants = () => {
 
+    // const mock_topics = [{id: 1, number: 7, text: "lsdk;kfs;"}]
+
     const auth = useContext(AuthContext);
 
-    const [topics, setTopics] = useState([]);
+    const [topics, setTopics] = useState();
     const { request } = useHttp(auth.setModal);
 
-    useEffect(async () => {
-        try {
-            const data = await request("http://127.0.0.1:3001/topics?page=2");
-            setTopics(data);
-        } catch (err) {
-            console.log("Get variants error", err);
-        }
-    }, []);
+    // useEffect(async () => {
+    //     try {
+    //         const data = await request("http://127.0.0.1:3001/topics?page=2");
+    //         setTopics(data);
+    //     } catch (err) {
+    //         console.log("Get variants error", err);
+    //     }
+    // }, []);
 
     return (
         <div className="variants">

@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import ResultModal from "../components/ResultModal";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import "../styles/Questions.scss";
@@ -11,31 +12,35 @@ const QuestionsPage = () => {
     //         type: 7,
     //     },
     //     {
-    //         id: 1,
+    //         id: 2,
     //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
     //         type: 7,
     //     },
     //     {
-    //         id: 1,
+    //         id: 3,
     //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
     //         type: 7,
     //     },
     //     {
-    //         id: 1,
+    //         id: 4,
     //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
     //         type: 7,
     //     },
     //     {
-    //         id: 1,
+    //         id: 5,
     //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
     //         type: 7,
     //     },
     // ];
 
-    const auth = useContext(AuthContext)
-    const {request} = useHttp(auth.setModal)
+    const [active, setActive] = useState(false)
 
-    const [questions, setQuestions] = useState([]);
+    const auth = useContext(AuthContext);
+    const { request } = useHttp(auth.setModal);
+
+    const [questions, setQuestions] = useState();
+
+    const [answers, setAnswers] = useState([{questionId: "1", answer: "aa"}]);
 
     useEffect(async () => {
         try {
@@ -46,20 +51,53 @@ const QuestionsPage = () => {
         }
     }, [])
 
+    const sendResults = () => {
+        setActive(true)
+    };
+
+    const handleInput = (e) => {
+        const { id, value } = e.target;
+
+        const findAnswer = answers.find(
+            (answer) => answer.questionId === id,
+        );
+
+        console.log(findAnswer)
+
+        if (findAnswer) {
+            findAnswer.answer = value;
+            // setAnswers(findAnswer)
+        } else {
+            answers.push({ questionId: id, answer: value });
+            console.log(answers)
+            setAnswers(answers);
+        }
+    };
+
     return (
         <div className="questions">
             {questions.map((question, index) => (
                 <div className="questions__item">
                     <h3>Задание {question.number}</h3>
-                    <div style={{whiteSpace: "normal", height: "400px"}}>
+                    <div className="questions__item__text">
                         <p>
                             {index + 1}. {question.text}
                         </p>
                     </div>
 
-                    <input placeholder="Введите ответ" />
+                    <input
+                        id={`${question.id}`}
+                        placeholder="Введите ответ"
+                        onChange={handleInput}
+                    />
                 </div>
             ))}
+
+            <div className="questions__sendAns">
+                <button onClick={sendResults}>Отправить</button>
+            </div>
+
+            <ResultModal active={active} setActive={setActive} trueAnswers={6} falseAnswers={2}/>
         </div>
     );
 };

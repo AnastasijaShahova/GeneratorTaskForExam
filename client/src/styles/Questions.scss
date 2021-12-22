@@ -2,21 +2,39 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+
+   .questions__sendAns {
+       display: flex;
+       justify-content: center;
+       height: 100px;
+       align-items: center;
+
+       button {
+            width: 30%;
+            height: 50px;
+            background-color: rgb(174, 0, 255);
+            border-radius: 10px;
+            border: none;
+       }
+   }
     
-    // width: 100vw;
     .questions__item {
         width: 80%;
         margin: 0 auto;
         p {
             //white-space: normal;
 
-            font-size: 28px;
+            font-size: 20px;
         }
 
         input {
             background: #e8e8fa;
             box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
             border-radius: 4px;
+        }
+
+        .questions__item__text {
+            word-break: break-all;
         }
     }
 }

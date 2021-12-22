@@ -31,7 +31,6 @@ const AuthPage = () => {
     return (
         <div className="authpage">
             <div className="authpage__content">
-                <p>For teachers</p>
                 <div className="authpage__content__authimg">
                     <div className="authpage__content__authimg__img"></div>
                 </div>
@@ -74,7 +73,11 @@ const AuthPage = () => {
                     <p>Сохраняй свои результаты и смотри статистику</p>
                 </div>
                 <div className="authpage__footer__item">
-                    <p>Что-то еще</p>
+                    <p>Генерация только уникальных заданий</p>
+                </div>
+
+                <div className="authpage__footer__item">
+                    <p>Никакой рекламы и отвлекающих сообщений</p>
                 </div>
             </div>
         </div>

@@ -1,11 +1,12 @@
 .modal {
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0,0,0,0.4);
+    min-height: 100%;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.4);
     position: fixed;
     top: 0;
     left: 0;
     display: flex;
+    justify-content: center;
     opacity: 0;
     align-items: center;
     transform: scale(0);
@@ -20,11 +21,13 @@
 .modal__content {
     padding: 20px;
     border-radius: 12px;
-    background-color: green;
+    background: #ddd3f2;
+    backdrop-filter: blur(4px);
     width: 50vw;
     display: flex;
     justify-content: center;
     flex-direction: column;
+
 
     input {
         height: 60px;
@@ -40,13 +43,12 @@
     }
 
     button {
-        font-size: 1rem;
-        // margin: 0.5rem;
         padding: 1rem;
         width: 150px;
         border: none;
-        background-color: #41ff8a;
-        border-radius: 15px;
+        background: #EEEEEE;
+        border-radius: 40px;
+        align-self: flex-end;
         color: black;
         margin-top: 30px;
         &:hover {

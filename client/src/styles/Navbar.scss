@@ -33,10 +33,10 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            background-color: white;
+        
             height: 150px;
             flex: 2;
-            border: 1px solid black;
+            border-left: 3px solid black;
 
             .navbar__profile__info__name {
                 display: flex;
@@ -68,10 +68,9 @@
             background-color: rgb(130, 21, 231);
             height: 50px;
             border-radius: 10px;
-           
+
             border: none;
             margin: 10px;
         }
     }
 }
-

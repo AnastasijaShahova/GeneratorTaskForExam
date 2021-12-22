@@ -39,6 +39,7 @@ function App() {
                         setActive={setModal}
                         content={modal.content}
                     />
+                    
                 </div>
             </Router>
         </AuthContext.Provider>
