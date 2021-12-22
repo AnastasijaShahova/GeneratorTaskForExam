@@ -4,47 +4,50 @@ import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import "../styles/Questions.scss";
 
-const QuestionsPage = () => {
-    // const mock_questions = [
-    //     {
-    //         id: 1,
-    //         text: "djnksnfjksnjkdsfsdjfkdshfkhsdhfhsdkhfkkshfkjskdkfjkhdgkfhsdjfhgkjdshkgdhfnfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 2,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 3,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 4,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 5,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    // ];
+const QuestionsPage = (props) => {
+    const mock_questions = [
+        {
+            id: 1,
+            text: "djnksnfjksnjkdsfsdjfkdshfkhsdhfhsdkhfkkshfkjskdkfjkhdgkfhsdjfhgkjdshkgdhfnfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
+            type: 7,
+        },
+        {
+            id: 2,
+            text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
+            type: 7,
+        },
+        {
+            id: 3,
+            text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
+            type: 7,
+        },
+        {
+            id: 4,
+            text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
+            type: 7,
+        },
+        {
+            id: 5,
+            text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
+            type: 7,
+        },
+    ];
 
     const [active, setActive] = useState(false)
 
     const auth = useContext(AuthContext);
     const { request } = useHttp(auth.setModal);
 
-    const [questions, setQuestions] = useState();
+    const [questions, setQuestions] = useState(mock_questions);
 
     const [answers, setAnswers] = useState([{questionId: "1", answer: "aa"}]);
 
+    let search = window.location.search;
+    const topicId = parseInt(search.replace(/\D+/g,""));
+
     useEffect(async () => {
         try {
-            const data = await request("http://127.0.0.1:3001/questions?topicId=11");
+            const data = await request(`http://127.0.0.1:3001/questions?topicId=${topicId}`);
             setQuestions(data);
         } catch(err) {
             console.log("Question error ", err)
