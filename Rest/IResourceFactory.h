@@ -2,10 +2,12 @@
 #define UNTITLED5_IRESOURCEFACTORY_H
 #include <memory>
 #include <restbed>
+#include <iostream>
 using namespace restbed;
 
-class IResourceFactory {
+class IResourceFactory{
 public:
+    virtual ~IResourceFactory() { };
     virtual std::shared_ptr<Resource> get_resource() const = 0;
 };
 

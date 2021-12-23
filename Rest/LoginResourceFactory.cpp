@@ -50,4 +50,5 @@ void LoginResourceFactory::post_handler(const std::shared_ptr<restbed::Session> 
         auto content = to_json(log);
         session->close(restbed::OK, content, { { "Content-Length",  std::to_string(content.size())}});
         });
+
 }

@@ -38,13 +38,14 @@ const QuestionsPage = () => {
     const auth = useContext(AuthContext);
     const { request } = useHttp(auth.setModal);
 
-    const [questions, setQuestions] = useState();
+    const [questions, setQuestions] = useState([]);
 
     const [answers, setAnswers] = useState([{questionId: "1", answer: "aa"}]);
-
+    let search = window.location.search;
+    const topicId = parseInt(search.replace(/\D+/g,""));
     useEffect(async () => {
         try {
-            const data = await request("http://127.0.0.1:3001/questions?topicId=11");
+            const data = await request(`http://127.0.0.1:3001/questions?topicId=${topicId}`);
             setQuestions(data);
         } catch(err) {
             console.log("Question error ", err)
@@ -74,6 +75,7 @@ const QuestionsPage = () => {
         }
     };
 
+    console.log(answers)
     return (
         <div className="questions">
             {questions.map((question, index) => (
@@ -81,7 +83,7 @@ const QuestionsPage = () => {
                     <h3>Задание {question.number}</h3>
                     <div className="questions__item__text">
                         <p>
-                            {index + 1}. {question.text}
+                            {question.id}. {question.text}
                         </p>
                     </div>
 

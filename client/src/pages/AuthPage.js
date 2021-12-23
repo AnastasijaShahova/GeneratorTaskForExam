@@ -21,7 +21,7 @@ const AuthPage = () => {
                 },
             );
             if (data.status) {
-                auth.login(data.name, data.userId, "ученик");
+                auth.login(data.fio, data.userId, "ученик");
             }
         } catch (err) {
             console.log("Login error", err);

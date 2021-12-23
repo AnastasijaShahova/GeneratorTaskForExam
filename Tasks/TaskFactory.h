@@ -3,6 +3,7 @@
 
 #include "ITask.h"
 #include "iostream"
+
 struct taskStruct {
     int id;
     std::string text;

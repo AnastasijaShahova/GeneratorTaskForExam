@@ -4,6 +4,7 @@ import AuthPage from "./pages/AuthPage";
 import QuestionsPage from "./pages/QuestionsPage";
 import VariantsPage from "./pages/VariantsPage";
 
+//описываем пути на клиенте
 export const useRoutes = (isAuth) => {
     if (isAuth) {
         return (

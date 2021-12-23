@@ -5,13 +5,21 @@
 #include "IResourceFactory.h"
 #include "IServiceSetting.h"
 
+enum class As {
+    Login,
+    Label,
+    Task
+};
+
 class TaskService : public IService{
 public:
-    TaskService(std::shared_ptr<IResourceFactory> resource_factory, std::shared_ptr<IServiceSettings> settings_factory);
+    TaskService(std::shared_ptr<IServiceSettings> settings_factory);
     void start() override;
 private:
+    IResourceFactory* makeRes(As type);
     Service service_;
     std::shared_ptr<IServiceSettings> settings_factory_;
+
 };
 
 

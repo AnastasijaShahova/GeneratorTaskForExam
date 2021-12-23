@@ -20,6 +20,7 @@ public:
     void getTask(int number);
 
 private:
+    int get_query_param1(const std::shared_ptr<Session> session) const;
     int get_query_param(const std::shared_ptr<Session> session) const;
     std::string to_json();
     void get_handler(const std::shared_ptr<Session> session);

@@ -20,9 +20,10 @@ std::string TaskResourceFactory::to_json()
 {
     nlohmann::json jsonResult = nlohmann::json::array();
     for ( auto it = taskFactory->getTskStr().begin(); it != taskFactory->getTskStr().end() - 1; ++it ) {
-        jsonResult.push_back({ {"id", it->id},
+        jsonResult.push_back({ {"answerId", it->id},
                                {"text", it->text},
-                               {"number", it->number}
+                               {"number", it->number},
+                               {"answer",}
         }
         );
     }
@@ -41,8 +42,8 @@ void TaskResourceFactory::get_handler(const std::shared_ptr<Session> session)
 int TaskResourceFactory::get_query_param(const std::shared_ptr<Session> session) const
 {
     const auto& request = session->get_request();
-    std::string param = request->get_query_parameter("topicId");
-    return std::stoi(param);
+    std::string param1 = request->get_query_parameter("topicId");
+    return std::stoi(param1);
 }
 
 void TaskResourceFactory::getTask(int number)

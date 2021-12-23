@@ -5,11 +5,13 @@
     flex-direction: column;
 
     .variants__list {
-       
+       p {
+           font-size: 25px;
+       }
     }
 }
 
-h5 {
+h4 {
     color: rgb(89, 0, 255);
 }
 

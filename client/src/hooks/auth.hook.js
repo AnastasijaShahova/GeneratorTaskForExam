@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 const storageName = "userData";
 
 export const useAuth = () => {
-    const [name, setName] = useState("");
+    const [name, setName] = useState("Иванов И.И.");
     const [userId, setUserId] = useState(null);
     const [role, setRole] = useState("ученик");
 
@@ -32,7 +32,7 @@ export const useAuth = () => {
     useEffect(() => {
         const data = JSON.parse(localStorage.getItem(storageName));
 
-        if (data && data.token) {
+        if (data && data.userId) {
             login(data.name, data.userId, data.role);
         }
     }, [login]);
