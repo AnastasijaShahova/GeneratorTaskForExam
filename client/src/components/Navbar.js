@@ -20,7 +20,7 @@ const Navbar = ({userName, userRole}) => {
             <div className="navbar__profile">
                 <div className="navbar__profile__info">
                     <div className="navbar__profile__info__icon">
-                        <BsPersonSquare fontSize="3em" />
+                        <BsPersonSquare fontSize="3em" color={"white"}/>
                     </div>
                     <div className="navbar__profile__info__name">
                         <p>{userName}</p>

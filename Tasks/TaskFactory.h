@@ -8,8 +8,9 @@ struct taskStruct {
     int id;
     std::string text;
     int number;
-    taskStruct(int id_, std::string txt, int number_) :
-    id(id_), text(std::move(txt)), number(number_){}
+    int answer;
+    taskStruct(int id_, std::string txt, int number_, int answer_) :
+    id(id_), text(std::move(txt)), number(number_), answer(answer_){}
 };
 
 class TaskFactory {

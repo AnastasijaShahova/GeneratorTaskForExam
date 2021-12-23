@@ -74,7 +74,12 @@ void Task6::solverType3()
 
 }
 
-void Task6::createTask(int id, int number, std::string& text)
+void Task6::createTask(int id, int number, std::string& text, int& answer)
 {
 
+}
+
+int Task6::getNumber()
+{
+    return number_.back();
 }

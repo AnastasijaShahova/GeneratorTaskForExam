@@ -20,8 +20,9 @@ public:
     int searchBit(int number);
     bool checkPower2(int number);
     virtual void checkResult(int result) = 0;
-    virtual void createTask(int id, int number, std::string& text) = 0;
+    virtual void createTask(int id, int number, std::string& text, int& answer) = 0;
     virtual ~ITask() {}
+    virtual int getNumber() = 0;
 
     Distribution generator;
     std::vector<int> vectorId;

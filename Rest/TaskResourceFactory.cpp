@@ -23,7 +23,7 @@ std::string TaskResourceFactory::to_json()
         jsonResult.push_back({ {"answerId", it->id},
                                {"text", it->text},
                                {"number", it->number},
-                               {"answer",}
+                               {"answer", it->answer}
         }
         );
     }

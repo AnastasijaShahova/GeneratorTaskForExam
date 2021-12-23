@@ -4,10 +4,11 @@ void TaskFactory::createTask(std::unique_ptr<ITask> task, int number)
 {
     int randId;
     std::string text;
+    int answer;
     for( int i = 0; i < 5; ++i ) {
         randId = task->generator.random(1, task->vectorId.size()).Mt19937();
-        task->createTask(task->vectorId[randId - 1], number, text);
-        tskStr.emplace_back(randId, text, number);
+        task->createTask(task->vectorId[randId - 1], number, text, answer);
+        tskStr.emplace_back(randId, text, number, answer);
     }
 }
 

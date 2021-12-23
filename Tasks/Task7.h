@@ -13,7 +13,8 @@ public:
     void solverType3();
     void solverType4();
     void checkResult(int result) override;
-    void createTask(int id, int number, std::string& text) override;
+    void createTask(int id, int number, std::string& text, int& answer) override;
+    int getNumber() override;
 
 private:
     std::vector<int> number_;

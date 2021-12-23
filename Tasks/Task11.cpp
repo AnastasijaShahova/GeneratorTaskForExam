@@ -116,11 +116,12 @@ void Task11::generationAlphabet(int count)
     }
 }
 
-void Task11::createTask(int id, int number, std::string& text)
+void Task11::createTask(int id, int number, std::string& text, int& answer)
 {
     table = std::make_unique<DataTask>(number, id);
     number_.clear();
     solutionTask(table->getTypeFromString(table->getTypeTask()));
+    answer = number_.back();
     replacementText(text);
 }
 
@@ -135,4 +136,8 @@ void Task11::replacementText(std::string& textTaskString)
 //    }
 }
 
+int Task11::getNumber()
+{
+    return number_.back();
+}
 

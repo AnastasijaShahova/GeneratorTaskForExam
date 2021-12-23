@@ -14,8 +14,9 @@ public:
     void solverType3();
     void solverType4();
     void generationAlphabet(int count);
-    void createTask(int id, int number, std::string& text) override;
+    void createTask(int id, int number, std::string& text,int& answer) override;
     void replacementText(std::string& str);
+    int getNumber() override;
 
 
 private:

@@ -117,7 +117,12 @@ void Task7::checkResult(int result)
     table->putTableAnswer(number_);
 }
 
-void Task7::createTask(int id, int number, std::string& text)
+void Task7::createTask(int id, int number, std::string& text, int& answer)
 {
 
+}
+
+int Task7::getNumber()
+{
+    return number_.back();
 }
