@@ -76,7 +76,6 @@ const QuestionsPage = () => {
             (answer) => answer.answerId === id,
         );
 
-
         if (findAnswer) {
             findAnswer.answer = value;
             // setAnswers(findAnswer)

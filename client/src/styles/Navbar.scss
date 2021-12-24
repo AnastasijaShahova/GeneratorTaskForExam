@@ -45,12 +45,13 @@
                 justify-content: center;
                 flex-direction: column;
                 flex-basis: 60%;
-                margin-top: 25px;
+                margin-top: 15px;
                 p {
                     align-self: center;
                     margin: 0;
-                    margin-bottom: 5px;
-                    margin-right: 90px;
+                    margin-bottom: 1px;
+                    margin-right: 80px;
+                    font-size: larger;
                 }
             }
 
@@ -69,6 +70,9 @@
             align-items: center;
             flex: 1;
             color: #ffffff;
+            font-size: x-large;
+            font-family: Offside;
+
             background-color: rgb(130, 21, 231);
             height: 50px;
             border-radius: 10px;

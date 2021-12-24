@@ -19,7 +19,7 @@ std::shared_ptr<Resource> TaskResourceFactory::get_resource() const
 std::string TaskResourceFactory::to_json()
 {
     nlohmann::json jsonResult = nlohmann::json::array();
-    for ( auto it = taskFactory->getTskStr().begin(); it != taskFactory->getTskStr().end() - 1; ++it ) {
+    for ( auto it = taskFactory->getTskStr().begin(); it != taskFactory->getTskStr().end() ; ++it ) {
         jsonResult.push_back({ {"answerId", it->id},
                                {"text", it->text},
                                {"number", it->number},
