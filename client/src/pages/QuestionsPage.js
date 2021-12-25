@@ -92,7 +92,7 @@ const QuestionsPage = () => {
                     <h3>Задание {trueAnswer.number}</h3>
                     <div className="questions__item__text">
                         <p>
-                            {trueAnswer.answerId}. {trueAnswer.text}
+                             {trueAnswer.text}
                         </p>
                     </div>
 
@@ -108,7 +108,7 @@ const QuestionsPage = () => {
                 <button onClick={sendResults}>Отправить</button>
             </div>
 
-            <ResultModal active={active} setActive={setActive} trueAnswers={countTrueAnswer} falseAnswers={countFalseAnswer}/>
+            <ResultModal active={active} setActive={setActive} trueAnswers={countTrueAnswer} falseAnswers={countFalseAnswer} countAll={trueAnswers.length}/>
         </div>
     );
 };

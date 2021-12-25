@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/AuthModal.scss";
 
-const ResultModal = ({ active, setActive, trueAnswers, falseAnswers }) => {
+const ResultModal = ({ active, setActive, trueAnswers, falseAnswers, countAll }) => {
     return (
         <div className={active ? "modal active" : "modal"}>
             <div
@@ -10,7 +10,7 @@ const ResultModal = ({ active, setActive, trueAnswers, falseAnswers }) => {
             >
                 <p>Количество правильных ответов: {trueAnswers}</p>
                 <p>Количество неправильных ответов: {falseAnswers}</p>
-                <p>Всего заданий: {trueAnswers + falseAnswers}</p>
+                <p>Всего заданий: {countAll}</p>
 
                 <button onClick={() => setActive(false)}>Закрыть</button>
             </div>
