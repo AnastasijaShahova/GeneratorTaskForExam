@@ -23,7 +23,7 @@
         }
 
         .authpage__content__info {
-            flex: 1.2;
+            flex: 1.8;
             display: flex;
             justify-content: center;
 
@@ -51,15 +51,16 @@
             .authpage__content__info__title {
                 align-self: center;
                 color: white;
-                margin-bottom: 150px;
+                margin-bottom: 100px;
+                margin-right: 60px;
 
                 h1 {
                     font-size: 60px;
-                    line-height: 101px;
+                    line-height: 30px;
                 }
 
                 h4 {
-                    margin-left: 40px;
+                    color: white;
                 }
             }
         }

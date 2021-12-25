@@ -37,7 +37,8 @@
         }
 
         .questions__item__text {
-            word-break: break-all;
+            overflow-wrap: break-word;
+            // word-break: break-all;
         }
     }
 }
