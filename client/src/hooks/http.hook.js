@@ -22,7 +22,7 @@ export const useHttp = (setModal, setMessage) => {
 
                 const data = await response.json();
 
-                if (!response) {
+                if (!response || !data.status) {
                     setModal(true)
                     setMessage(data.message)
                     setError(data.message);
