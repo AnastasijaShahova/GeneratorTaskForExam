@@ -62,6 +62,14 @@ void TaskResourceFactory::getTask(int number)
             taskFactory->createTask(std::make_unique<Task7>(number), number);
             break;
         }
+//        case TaskNumber14: {
+//            taskFactory->createTask(std::make_unique<Task14>(number), number);
+//            break;
+//        }
+//        case TaskNumber6: {
+//            taskFactory->createTask(std::make_unique<Task6>(number), number);
+//            break;
+//        }
         default:
             break;
     }
