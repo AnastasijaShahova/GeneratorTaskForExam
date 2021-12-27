@@ -11,7 +11,7 @@ const Variants = () => {
     const auth = useContext(AuthContext);
 
     const [topics, setTopics] = useState([]);
-    const { request } = useHttp(auth.setModal);
+    const { request } = useHttp(auth.setModal, auth.setMessage);
 
     const history = useNavigate()
     useEffect(async () => {

@@ -9,17 +9,13 @@ import "./App.scss"
 import "materialize-css";
 
 function App() {
-    const [modal, setModal] = useState({
-        active: false,
-        content: "",
-    });
-
+    const [modal, setModal] = useState(false);
+    const [message, setMessage] = useState("")
     const { name, login, logout, userId, role } = useAuth();
-    const isAuth = !!userId;
-    // const isAuth = true;
-    const routes = useRoutes(isAuth);
+    // const isAuth = !!userId;
+    const isAuth = false;
+    const routes = useRoutes(false);
 
-    console.log(userId)
     return (
         <AuthContext.Provider
             value={{
@@ -28,7 +24,9 @@ function App() {
                 logout,
                 userId,
                 isAuth,
-                role
+                role,
+                setModal,
+                setMessage
             }}
         >
             <Router>
@@ -36,9 +34,9 @@ function App() {
                 <div className={`app ${isAuth ? 'white' : 'violet'}`}>
                     {routes}
                     <AuthModal
-                        active={modal.active}
+                        active={modal}
                         setActive={setModal}
-                        content={modal.content}
+                        content={message}
                     />
                     
                 </div>

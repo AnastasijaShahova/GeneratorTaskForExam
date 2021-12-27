@@ -8,7 +8,7 @@ const QuestionsPage = () => {
     // const mock_questions = [
     //     {
     //         id: 1,
-    //         text: "djnksnfjksnjkdsfsdjfkdshfkhsdhfhsdkhfkkshfkjskdkfjkhdgkfhsdjfhgkjdshkgdhfnfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
+    //         text: "Привет Привет Привет Привет Привет Привет Привет Привет Привет Привет Привет Привет Привет Привет Привет ",
     //         type: 7,
     //     },
     //     {
@@ -38,7 +38,7 @@ const QuestionsPage = () => {
     const [active, setActive] = useState(false)
 
     const auth = useContext(AuthContext);
-    const { request } = useHttp(auth.setModal);
+    const { request } = useHttp(auth.setModal, auth.setMessage);
 
     const [trueAnswers, setTrueAnswers] = useState([]);
 

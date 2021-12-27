@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-export const useHttp = (setModal) => {
+export const useHttp = (setModal, setMessage) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     // const [errorMessage, setErrorMessage] = useState("")
@@ -21,11 +21,10 @@ export const useHttp = (setModal) => {
                 })
 
                 const data = await response.json();
-                if (!response.ok) {
-                    setModal({
-                        active: true,
-                        content: data.message
-                    })
+
+                if (!response) {
+                    setModal(true)
+                    setMessage(data.message)
                     setError(data.message);
                 }
                 setLoading(false);

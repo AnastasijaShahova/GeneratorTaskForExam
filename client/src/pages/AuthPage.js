@@ -8,7 +8,7 @@ const AuthPage = () => {
     const [password, setPassword] = useState("");
 
     const auth = useContext(AuthContext);
-    const { request } = useHttp(auth.setModal);
+    const { request } = useHttp(auth.setModal, auth.setMessage);
 
     const login = async () => {
         try {
