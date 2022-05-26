@@ -15,6 +15,7 @@ function App() {
     // const isAuth = !!userId;
     const isAuth = false;
     const routes = useRoutes(false);
+    console.log(1)
 
     return (
         <AuthContext.Provider
