@@ -1,98 +1,118 @@
 .authpage {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 80vh;
+    background: radial-gradient(59.87% 59.87% at 48.06% 40.13%, rgba(94, 25, 148, 0.94) 0%, rgba(41, 8, 135, 0.88) 75.52%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+    background-blend-mode: darken;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+
+    .autpage__img {
+        flex: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
 
     .authpage__content {
         flex: 4;
         display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
 
-        .authpage__content__authimg {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .authpage__content__title {
+            height: 30%;
+            font-style: normal;
+            font-weight: 400;
 
-            .authpage__content__authimg__img {
-                background-color: red;
-                width: 400px;
-                height: 400px;
-                background: url("../images/authImg.jpg") 0 0/100% 100% no-repeat;
+            h1 {
+                font-size: 80px;
+                line-height: 101px;
+            }
+
+            h4 {
+                font-size: 40px;
+                line-height: 50px;
             }
         }
 
-        .authpage__content__info {
-            flex: 1.8;
+        .authpage__content__form {
+            height: 40%;
             display: flex;
-            justify-content: center;
+            flex-direction: row;
+            justify-content: flex-end;
+            margin: 0 0;
+            align-items: stretch;
 
-            .authpage__content__info__inputs {
-                align-self: flex-end;
-                input {
-                    padding-left: 5px;
-                    background: #e8e8fa;
-                    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-                    border-radius: 4px;
-                }
+            form {
+                flex-basis: 50%;
+                display: flex;
+                flex-direction: column;
 
                 h4 {
-                    color: white;
-                    //margin-bottom: 20px;
+                    color: #B5B7CC;
+                    font-weight: 50;
+                    font-family: 'Roboto';
                     font-size: 30px;
+                    line-height: 35px;
                 }
 
-                .button_field {
+                .authpage__content__form__input_container {
                     display: flex;
-                    justify-content: center;
-                    margin-bottom: 20px;
-                    border-radius: 15px;
+                    flex-direction: row;
+                    margin-top: 10px;
+
+                    input {
+                        width: 370px;
+                        height: 45px;
+                        padding: 10px;
+                        outline: none;
+                        background: #E8E8FA;
+                        box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        border-radius: 4px;
+                        color: black;
+                    }
+
+                    input:focus {
+                        border: 2px solid rgb(158, 144, 216);
+                    }
+
+                    .authpage__content__form__input_icon {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 40px;
+                        height: 45px;
+                        border-radius: 4px;
+                        background: #E8E8FA;
+
+                        i {
+                            color: black;
+                        }
+                       
+                    }
+                }
+
+                .authpage__content__form__submit {
+                    margin-top: 20px;
+                    display: flex;
+                    justify-content: flex-end;
+                    width: 370px;
+
+                    input {
+                        margin: 0 0;
+                        flex-basis: 50%;
+                        background: #EEEEEE;
+                        border-radius: 40px;
+                        height: 50px;
+                        color: black;
+                    }
+
+                    input:hover {
+                        opacity: 1;
+                        background-color: rgb(158, 144, 216);
+                    }
                 }
             }
-
-            .authpage__content__info__title {
-                align-self: center;
-                color: white;
-                margin-bottom: 100px;
-                margin-right: 60px;
-
-                h1 {
-                    font-size: 70px;
-                    line-height: 30px;
-                }
-
-                h4 {
-                    color: white;
-                }
-            }
-        }
-
-        p {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin: 30px;
-            color: white
-        }
-    }
-
-    .authpage__footer {
-        flex: 1;
-        background-color: #e5e5e5;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-
-        .authpage__footer__item {
-            padding: 10px;
-            width: 200px;
-            height: 130px;
-            background: #e8e8fa;
-            border: 0.3px solid rgba(94, 25, 148, 0.94);
-            box-sizing: border-box;
-            box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
-            border-radius: 8px;
         }
     }
 }
