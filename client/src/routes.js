@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuthPage from "./pages/AuthPage";
 import QuestionsPage from "./pages/QuestionsPage";
+import StatisticPage from "./pages/StatisticPage";
 import VariantsPage from "./pages/VariantsPage";
 
 export const useRoutes = (isAuth) => {
@@ -14,6 +15,7 @@ export const useRoutes = (isAuth) => {
                     path="/variants/variant"
                     element={<QuestionsPage />}
                 />
+                <Route path="/statistic" element={<StatisticPage />} />
                 <Route path="*" element={<Navigate to="/variants" />} />
             </Routes>
         );

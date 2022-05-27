@@ -1,39 +1,40 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Navbar.scss";
-import { BsPersonSquare } from "react-icons/bs";
-import {AuthContext} from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext";
 
-const Navbar = ({userName, userRole}) => {
+const Navbar = ({ userName, userRole }) => {
     const history = useNavigate();
-    const auth = useContext(AuthContext)
+    const { logout } = useContext(AuthContext);
 
-    const logoutHandler = (event) => {
-        event.preventDefault();
-        auth.logout()
+    const statisticHandler = (e) => {
+        e.preventDefault();
+        history("/statistic");
+    };
+
+    const logoutHandler = (e) => {
+        e.preventDefault();
+        logout();
         history("/login");
     };
 
     return (
         <div className="navbar">
-            <h1 className="navbar__logo">Task Generator</h1>
-            <div className="navbar__profile">
-                <div className="navbar__profile__info">
-                    <div className="navbar__profile__info__icon">
-                        <BsPersonSquare fontSize="3em" color={"white"}/>
+            <div className="navbar__title">
+                <h1>Task Generator</h1>
+            </div>
+            <div className="navbar__info">
+                <div className="navbar__info__user">
+                    <div className="navbar__info__user__icon">
+                        <i className="material-icons">account_circle</i>
                     </div>
-                    <div className="navbar__profile__info__name">
-                        <p>{userName}</p>
+                    <div className="navbar__info__user__name">
+                        <p style={{ fontSize: "20px" }}>{userName}</p>
                         <p>{userRole}</p>
                     </div>
-
-                    <button
-                        className="navbar__profile__logout"
-                        onClick={logoutHandler}
-                    >
-                        Выйти
-                    </button>
                 </div>
+                <p onClick={statisticHandler}>Статистика</p>
+                <p className="logout" onClick={logoutHandler}>Выйти</p>
             </div>
         </div>
     );
