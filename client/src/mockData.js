@@ -44,6 +44,8 @@ const mockData = (type) => {
                 text: `Пить или не пить, какой ответ верный?`,
             },
         ];
+    } else if ((type = "answers")) {
+        data = ["1", "2", "3", "4"];
     }
 
     return data;

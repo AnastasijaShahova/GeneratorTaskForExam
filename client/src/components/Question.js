@@ -1,20 +1,29 @@
 import "../styles/Question.scss";
 
-const Question = ({ number, text, userAnswers, setUserAnswers, index }) => {
+const Question = ({ question, userAnswers, setUserAnswers, index }) => {
     const handleInput = (e) => {
-        const newUserAnswers = [...userAnswers]
-        newUserAnswers[index] = e.target.value
+        const newUserAnswers = [...userAnswers];
+        newUserAnswers[index] = e.target.value;
 
-        setUserAnswers(newUserAnswers)
+        setUserAnswers(newUserAnswers);
     };
 
     return (
         <div className="question">
             <div className="question__number">
-                <h3>Задание {number}.</h3>
+                <h3>Задание {question.number}.</h3>
             </div>
-            <p>{index+1}. {text}</p>
+            <p>
+                {index + 1}. {question.text}
+            </p>
             <input
+                style={
+                    question.inputColor === "red"
+                        ? { border: "2px solid red" }
+                        : question.inputColor === "green"
+                        ? { border: "2px solid green" }
+                        : {}
+                }
                 placeholder="Введите ответ"
                 onChange={handleInput}
                 id={index}

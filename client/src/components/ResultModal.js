@@ -1,7 +1,13 @@
 import React from "react";
-import "../styles/AuthModal.scss";
+import "../styles/Modal.scss";
 
-const ResultModal = ({ active, setActive, trueAnswers, falseAnswers, countAll }) => {
+const ResultModal = ({
+    active,
+    setActive,
+    trueAnswers,
+    falseAnswers,
+    countAllAnswers,
+}) => {
     return (
         <div className={active ? "modal active" : "modal"}>
             <div
@@ -10,9 +16,13 @@ const ResultModal = ({ active, setActive, trueAnswers, falseAnswers, countAll })
             >
                 <p>Количество правильных ответов: {trueAnswers}</p>
                 <p>Количество неправильных ответов: {falseAnswers}</p>
-                <p>Всего заданий: {countAll}</p>
-
-                <button onClick={() => setActive(false)}>Закрыть</button>
+                <p style={{ marginTop: "10px" }}>
+                    Всего заданий: {countAllAnswers}
+                </p>
+                
+                <div className="modal__content__button">
+                    <button onClick={() => setActive(false)}>Закрыть</button>
+                </div>
             </div>
         </div>
     );
