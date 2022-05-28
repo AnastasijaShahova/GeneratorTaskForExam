@@ -8,9 +8,9 @@ import mockData from "../mockData";
 import Question from "../components/Question";
 
 const QuestionsPage = () => {
-    const [questions, setQuestions] = useState(mockData("questions")); //Заглушка
+    const [questions, setQuestions] = useState([]); //Заглушка mockData("questions")
 
-    const [answers, setAnswers] = useState(mockData("answers")); //Заглушка
+    const [answers, setAnswers] = useState([]); //Заглушка mockData("answers")
     const [modalActive, setModalActive] = useState(false);
     const [userAnswers, setUserAnswers] = useState([]);
 
@@ -19,25 +19,25 @@ const QuestionsPage = () => {
 
     const history = useNavigate();
 
-    // const { request } = useHttp();
+    const { request } = useHttp();
 
-    // let search = window.location.search;
-    // const topicId = parseInt(search.replace(/\D+/g, ""));
+    let search = window.location.search;
+    const topicId = parseInt(search.replace(/\D+/g, ""));
 
-    // const URL =
-    //     process.env.REACT_APP_SERVER_URL + `/questions?topicId=${topicId}`;
+    const URL =
+        process.env.REACT_APP_SERVER_URL + `/questions?topicId=${topicId}`;
 
-    // useEffect(() => {
-    //     const fetchAnswers = async () => {
-    //         try {
-    //             const data = await request(URL);
-    //             setAnswers(data);
-    //         } catch (e) {
-    //             console.log("Question Page error: ", e);
-    //         }
-    //     };
-    //     fetchAnswers();
-    // }, []);
+    useEffect(() => {
+        const fetchAnswers = async () => {
+            try {
+                const data = await request(URL);
+                setAnswers(data);
+            } catch (e) {
+                console.log("Question Page error: ", e);
+            }
+        };
+        fetchAnswers();
+    }, []);
 
     const clickHandler = (e) => {
         e.preventDefault();

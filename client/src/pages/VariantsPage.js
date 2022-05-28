@@ -9,22 +9,21 @@ const url = process.env.REACT_APP_SERVER_URL + "/topics?page=2";
 const VariantsPage = () => {
     const history = useNavigate();
 
-    const topics = mockData("variants"); // Заглушка
-    // const [topics, setTopics] = useState([]);
+    const [topics, setTopics] = useState([]); // Заглушка mockData("variants")
 
-    // const { request } = useHttp();
+    const { request } = useHttp();
 
-    // useEffect(() => {
-    //     const fetchTopics = async () => {
-    //         try {
-    //             const data = await request(url);
-    //             setTopics(data);
-    //         } catch (e) {
-    //             console.log("Variat error: ", e);
-    //         }
-    //     };
-    //     fetchTopics();
-    // }, []);
+    useEffect(() => {
+        const fetchTopics = async () => {
+            try {
+                const data = await request(url);
+                setTopics(data);
+            } catch (e) {
+                console.log("Variat error: ", e);
+            }
+        };
+        fetchTopics();
+    }, []);
 
     const clickHandler = (number) => {
         history(`/variants/variant?variant_id=${number}`);
