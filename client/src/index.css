@@ -1,54 +1,14 @@
-@import "~materialize-css/dist/css/materialize.min.css";
-
-input.green-input {
-    border-bottom: 1px solid #fff !important;
-    box-shadow: 0 1px 0 0 #fff !important;
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
 }
-
-input.green-input + label {
-    color: #ffffff !important;
-}
-
-input.green-input:focus {
-    border-bottom: 1px solid #05d454 !important;
-    box-shadow: 0 1px 0 0 #05d454 !important;
-}
-
-.row a {
-    justify-content: center;
-}
-
-
-.block {
-    backdrop-filter: blur(50px);
-    border-radius: 25px;
-    height: 100%;
-}
-
-.imgBlockContent {
-    width: 500px;
-    height: 600px;
-    width: 90%;
-    margin: 2rem auto;
-}
-
-.blur {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(4px);
-    width: 100%;
-    height: 100%;
-}
-
-.setCenter {
-    margin-top: 120px;
-}
-
-.setCenter p {
-    margin: 50px 0;
-}
-
-.authBtn {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
+  

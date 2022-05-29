@@ -3,22 +3,15 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { useRoutes } from "./routes";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
-import AuthModal from "./components/AuthModal";
-import Navbar from "./components/Navbar"
-import "./App.scss"
-import "materialize-css";
+import Navbar from "./components/Navbar";
+import "./App.scss";
 
 function App() {
-    const [modal, setModal] = useState({
-        active: false,
-        content: "",
-    });
-
     const { name, login, logout, userId, role } = useAuth();
     const isAuth = !!userId;
+    // const isAuth = true; // Заглушка
     const routes = useRoutes(isAuth);
 
-    console.log(userId)
     return (
         <AuthContext.Provider
             value={{
@@ -27,19 +20,13 @@ function App() {
                 logout,
                 userId,
                 isAuth,
-                role
+                role,
             }}
         >
             <Router>
-                {isAuth && <Navbar userName={name} userRole={role}/>}
-                <div className={`app ${isAuth ? 'white' : 'violet'}`}>
+                {isAuth && <Navbar userName={name} userRole={role} />}
+                <div className={`app ${isAuth ? "white" : "violet"}`}>
                     {routes}
-                    <AuthModal
-                        active={modal.active}
-                        setActive={setModal}
-                        content={modal.content}
-                    />
-                    
                 </div>
             </Router>
         </AuthContext.Provider>

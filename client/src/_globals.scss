@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Offside&display=swap');
+
 * {
   margin: 0 auto;
   padding: 0;
@@ -7,7 +9,21 @@
   font-family: "Muli", sans-serif;
 }
 
+.input_container {
+  display: flex;
+  flex-direction: row;
+}
+
+.error_message {
+  font-size: 10px;
+  color: red;
+  display: block;
+}
+
+
 $backgroundColor: #0f2912;
+$violetColor: radial-gradient(59.87% 59.87% at 48.06% 40.13%, rgba(94, 25, 148, 0.94) 0%, rgba(41, 8, 135, 0.88) 75.52%);
 $redColor: #ff1e56;
 $greenColor: #41ff8a;
 $greyColor: #2d343e;
+$hoverColor: #7a7fe8;

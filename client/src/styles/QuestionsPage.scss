@@ -1,0 +1,50 @@
+.questions {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+    min-height: 81vh;
+    height: 100%;
+    background-color: rgba(248, 248, 248, 1);
+
+    .questions__variants_page {
+        height: 60px;
+        width: 100%;
+        border-bottom: 1px solid rgba(134, 131, 131, 0.19);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        p {
+            font-size: 18px;
+            color: rgba(43, 0, 78, 0.94);
+            margin:  0 0;
+            padding-left: 90px;
+        }
+    }
+
+    .questions__variants_page:hover p {
+        color: rgba(94, 25, 148, 0.94);
+    }
+
+    button {
+        margin-top: 30px;
+        width: 30%;
+        height: 50px;
+        color: #ffffff;
+        font-size: x-large;
+        font-family: Offside;
+        background: radial-gradient(
+            59.87% 59.87% at 48.06% 40.13%,
+            rgba(94, 25, 148, 0.94) 0%,
+            rgba(41, 8, 135, 0.88) 75.52%
+        );
+        background-blend-mode: darken;
+        border-radius: 10px;
+        border: none;
+    }
+
+    button:hover {
+        opacity: 0.7;
+    }
+}

@@ -1,19 +1,28 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
+import { useForm } from "react-hook-form";
+import authImg from "../images/authImg.jpg";
 import "../styles/AuthPage.scss";
+import validator from "validator";
 
 const AuthPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {
+        register,
+        formState: { errors },
+        handleSubmit,
+        reset,
+    } = useForm({
+        mode: "onBlur",
+    });
 
-    const auth = useContext(AuthContext);
-    const { request } = useHttp(auth.setModal);
+    const { login } = useContext(AuthContext);
+    const { request } = useHttp();
 
-    const login = async () => {
+    const onSubmit = async ({ email, password }) => {
         try {
             const data = await request(
-                "http://127.0.0.1:3001/auth/login?page=1",
+                process.env.REACT_APP_SERVER_URL + "/auth/login?page=1",
                 "POST",
                 {
                     email,
@@ -21,63 +30,76 @@ const AuthPage = () => {
                 },
             );
             if (data.status) {
-                auth.login(data.fio, data.userId, "ученик");
+                login(data.fio, data.userId, "ученик");
             }
-        } catch (err) {
-            console.log("Login error", err);
+        } catch (e) {
+            console.log("AutPage error", e);
         }
+        reset();
     };
 
     return (
         <div className="authpage">
+            <div className="autpage__img">
+                <img width="379" height="379" src={authImg} />
+            </div>
             <div className="authpage__content">
-                <div className="authpage__content__authimg">
-                    <div className="authpage__content__authimg__img"></div>
+                <div className="authpage__content__title">
+                    <h1>Task Generator</h1>
+                    <h4>Готов решать?</h4>
                 </div>
-                <div className="authpage__content__info">
-                    <div className="authpage__content__info__title">
-                        <h1>Task Generator</h1>
-                        <h4>Готов решать?</h4>
-                    </div>
-                    <div className="authpage__content__info__inputs">
+                <div className="authpage__content__form">
+                    <div></div>
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <h4>Log in to Your Account</h4>
-                        <div className="input-field col s6">
-                            <i className="material-icons prefix">
-                                account_circle
-                            </i>
+                        <div className="authpage__content__form__input_container">
+                            <div className="authpage__content__form__input_icon">
+                                <i className="material-icons">account_circle</i>
+                            </div>
+
                             <input
                                 placeholder="Email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                {...register("email", {
+                                    required: "Поле обязательно к заполнению",
+                                    validate: (email) =>
+                                        validator.isEmail(email),
+                                })}
                             />
                         </div>
-                        <div className="input-field col s6">
-                            <i className="material-icons prefix">https</i>
+                        {errors?.email && (
+                            <p className="error_message">
+                                {errors?.email?.message || "Некорректный email"}
+                            </p>
+                        )}
+
+                        <div className="authpage__content__form__input_container">
+                            <div className="authpage__content__form__input_icon">
+                                <i className="material-icons">https</i>
+                            </div>
                             <input
                                 placeholder="Password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                type={"password"}
+                                {...register("password", {
+                                    required: "Поле обязательно к заполнению",
+                                    minLength: {
+                                        value: 6,
+                                        message: "Минимальная длина пароля: 6",
+                                    },
+                                })}
                             />
                         </div>
-                        <div className="button_field col s6">
-                            <button onClick={login}>Войти</button>
+                        {errors?.password && (
+                            <p className="error_message">
+                                {errors?.password?.message ||
+                                    "Некорректный пароль"}
+                            </p>
+                        )}
+                        <div className="authpage__content__form__submit">
+                            <div></div>
+                            <input type="submit" value="Log In" />
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div className="authpage__footer">
-                <div className="authpage__footer__item">
-                    <p>Выбирай задания и составляй из них варианты</p>
-                </div>
-                <div className="authpage__footer__item">
-                    <p>Сохраняй свои результаты и смотри статистику</p>
-                </div>
-                <div className="authpage__footer__item">
-                    <p>Генерация только уникальных заданий</p>
-                </div>
-
-                <div className="authpage__footer__item">
-                    <p>Никакой рекламы и отвлекающих сообщений</p>
+                    </form>
                 </div>
             </div>
         </div>

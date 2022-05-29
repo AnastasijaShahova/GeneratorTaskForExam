@@ -10,4 +10,6 @@ export const AuthContext = createContext({
     logout: noop,
     isAuth: false,
     setModal: noop,
+    modal: { active: false, content: "" },
+    setMessage: noop
 });

@@ -2,113 +2,92 @@ import { useContext, useEffect, useState } from "react";
 import ResultModal from "../components/ResultModal";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
-import "../styles/Questions.scss";
+import { useNavigate } from "react-router-dom";
+import "../styles/QuestionsPage.scss";
+import mockData from "../mockData";
+import Question from "../components/Question";
 
 const QuestionsPage = () => {
-    // const mock_questions = [
-    //     {
-    //         id: 1,
-    //         text: "djnksnfjksnjkdsfsdjfkdshfkhsdhfhsdkhfkkshfkjskdkfjkhdgkfhsdjfhgkjdshkgdhfnfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 2,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 3,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 4,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    //     {
-    //         id: 5,
-    //         text: "djnksnfjksnjkfnskfjsjkdfnjksnfjnsknfksnkfnsknfksn",
-    //         type: 7,
-    //     },
-    // ];
+    const [questions, setQuestions] = useState([]); //Заглушка mockData("questions")
 
-    const [countTrueAnswer, setCountTrueAnswer] = useState("0")
-    const [countFalseAnswer, setCountFalseAnswer] = useState("0")
-    const [active, setActive] = useState(false)
+    const [answers, setAnswers] = useState([]); //Заглушка mockData("answers")
+    const [modalActive, setModalActive] = useState(false);
+    const [userAnswers, setUserAnswers] = useState([]);
 
-    const auth = useContext(AuthContext);
-    const { request } = useHttp(auth.setModal);
+    const [countTrueAnswers, setCountTrueAnswers] = useState(0);
+    const [countFalseAnswers, setCountFalseAnswers] = useState(0);
 
-    const [trueAnswers, setTrueAnswers] = useState([]);
+    const history = useNavigate();
 
-    const [answers, setAnswers] = useState([]);
+    const { request } = useHttp();
+
     let search = window.location.search;
-    const topicId = parseInt(search.replace(/\D+/g,""));
-    useEffect(async () => {
-        try {
-            const data = await request(`http://127.0.0.1:3001/questions?topicId=${topicId}`);
-            setTrueAnswers(data);
-        } catch(err) {
-            console.log("Question error ", err)
-        }
-    }, [])
+    const topicId = parseInt(search.replace(/\D+/g, ""));
 
-    const calculateAnswers = (userAnswers) => {
-        let countTrueAns = 0, countFalseAns = 0
-        userAnswers.forEach(userAnswer => {
-            const trueAns = trueAnswers.find(trueAnswer => trueAnswer.answer === parseInt(userAnswer.answer))
-            trueAns ? countTrueAns += 1 : countFalseAns += 1
-        })
-        setCountTrueAnswer(countTrueAns)
-        setCountFalseAnswer(countFalseAns)
-    }
+    const URL =
+        process.env.REACT_APP_SERVER_URL + `/questions?topicId=${topicId}`;
 
-    const sendResults = () => {
-        calculateAnswers(answers)
-        setActive(true)
+    useEffect(() => {
+        const fetchAnswers = async () => {
+            try {
+                const data = await request(URL);
+                setAnswers(data);
+            } catch (e) {
+                console.log("Question Page error: ", e);
+            }
+        };
+        fetchAnswers();
+    }, []);
+
+    const clickHandler = (e) => {
+        e.preventDefault();
+        history("/variants");
     };
 
-    const handleInput = (e) => {
-        const { id, value } = e.target;
+    const sendResults = () => {
+        calculateAnswers(answers);
+        setModalActive(true);
+    };
 
-        const findAnswer = answers.find(
-            (answer) => answer.answerId === id,
-        );
-
-        if (findAnswer) {
-            findAnswer.answer = value;
-            // setAnswers(findAnswer)
-        } else {
-            answers.push({ answerId: id, answer: value });
-            setAnswers(answers);
+    const calculateAnswers = (answers) => {
+        let countTrueAnswers = 0,
+            countFalseAnswers = 0;
+        for (let i = 0; i < answers.length; i += 1) {
+            const currentInput = document.getElementById(i);
+            if (answers[i] === userAnswers[i]) {
+                countTrueAnswers += 1;
+                currentInput.style.border = "2px solid green";
+            } else {
+                countFalseAnswers += 1;
+                currentInput.style.border = "2px solid red";
+            }
         }
+        setCountTrueAnswers(countTrueAnswers);
+        setCountFalseAnswers(countFalseAnswers);
     };
 
     return (
         <div className="questions">
-            {trueAnswers.map((trueAnswer, index) => (
-                <div className="questions__item">
-                    <h3>Задание {trueAnswer.number}</h3>
-                    <div className="questions__item__text">
-                        <p>
-                             {trueAnswer.text}
-                        </p>
-                    </div>
-
-                    <input
-                        id={`${trueAnswer.answerId}`}
-                        placeholder="Введите ответ"
-                        onChange={handleInput}
-                    />
-                </div>
-            ))}
-
-            <div className="questions__sendAns">
-                <button onClick={sendResults}>Отправить</button>
+            <div className="questions__variants_page">
+                <p onClick={clickHandler}>Вернуться к списку заданий</p>
             </div>
+            {questions.map((question, index) => (
+                <Question
+                    question={question}
+                    userAnswers={userAnswers}
+                    setUserAnswers={setUserAnswers}
+                    index={index}
+                />
+            ))}
+            <button onClick={sendResults}>Отправить результаты</button>
 
-            <ResultModal active={active} setActive={setActive} trueAnswers={countTrueAnswer} falseAnswers={countFalseAnswer} countAll={trueAnswers.length}/>
+            <ResultModal
+                active={modalActive}
+                setActive={setModalActive}
+                countAllAnswers={questions.length}
+                trueAnswers={countTrueAnswers}
+                falseAnswers={countFalseAnswers}
+            />
         </div>
     );
 };

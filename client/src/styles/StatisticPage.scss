@@ -1,0 +1,40 @@
+.statistic {
+    width: 100%;
+    min-height: 81vh;
+    display: flex;
+    flex-direction: column;
+
+    .statistic__info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin: 0 0;
+
+        .statistic__info__text {
+            display: flex;
+            flex-direction: column;
+            margin: 0 0;
+
+            .statistic__info__text__name {
+                height: 100px;
+                display: flex;
+                align-items: center;
+                p {
+                    font-size: 30px;
+                    font-weight: 500;
+                    color: black;
+                }
+            }
+
+            p {
+                color: black;
+                margin:  0 0;
+                margin-bottom: 40px;
+            }
+        }
+
+        .statistic__info__chart {
+            margin: 0 0;
+        }
+    }
+}
