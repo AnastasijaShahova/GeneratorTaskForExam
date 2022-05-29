@@ -15,6 +15,7 @@ public:
     void checkResult(int result) override;
     void createTask(int id, int number, std::string& text, int& answer) override;
     int getNumber() override;
+    void replacementText(std::string& str);
 
 private:
     std::vector<int> number_;
