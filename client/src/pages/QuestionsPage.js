@@ -25,13 +25,17 @@ const QuestionsPage = () => {
     const topicId = parseInt(search.replace(/\D+/g, ""));
 
     const URL =
-        process.env.REACT_APP_SERVER_URL + `/questions?topicId=${topicId}`;
+        process.env.REACT_APP_SERVER_URL + `/questions?topicId=11`;
 
     useEffect(() => {
         const fetchAnswers = async () => {
             try {
                 const data = await request(URL);
-                setAnswers(data);
+                const questions = data.map(question => ({number:question.number, text:question.text}));
+                const answers = data.map(question => String(question.answer));
+                setQuestions(questions);
+                setAnswers(answers);
+                console.log(answers);
             } catch (e) {
                 console.log("Question Page error: ", e);
             }
