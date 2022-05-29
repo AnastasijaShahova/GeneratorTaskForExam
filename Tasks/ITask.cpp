@@ -15,7 +15,7 @@ int ITask::searchBit(int number)
 
 bool ITask::checkPower2(int number)
 {
-    return (number & (number - 1));
+    return (number & (number - 1) == 0);
 }
 
 

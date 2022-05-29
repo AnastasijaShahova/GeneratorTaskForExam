@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
-set(VCPKG_ROOT_DIR "$ENV{VCPKG_ROOT}" CACHE PATH "VCPKG_ROOT_DIR")
-if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT_DIR}/scripts/buildsystems/vcpkg.cmake"
-            CACHE STRING "")
-endif()
+#set(VCPKG_ROOT_DIR "$ENV{VCPKG_ROOT}" CACHE PATH "VCPKG_ROOT_DIR")
+#if(DEFINED ENV{VCPKG_ROOT} AND NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+#    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT_DIR}/scripts/buildsystems/vcpkg.cmake"
+#            CACHE STRING "")
+#endif()
 
 project(untitled5)
 
@@ -38,5 +38,5 @@ include_directories(/usr/local/mysql/include "${restbed_DISTRIBUTION}/include")
 include_directories(/usr/local/mysql/include )
 target_link_libraries(untitled5 /usr/local/mysql/lib/libmysqlclient.21.dylib )
 
-target_link_libraries(untitled5 /usr/local/mysql/lib/libmysqlclient.21.dylib  /Users/sahovaanastasia/CLionProjects/restbed/distribution/library/librestbed.dylib)
+target_link_libraries(untitled5 /Users/sahovaanastasia/CLionProjects/restbed/distribution/library/librestbed.dylib)
 

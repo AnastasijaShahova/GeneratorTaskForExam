@@ -23,7 +23,6 @@ private:
     //end vector keeps answer
     std::vector<int> number_;
     std::unique_ptr<DataTask> table ;
-//    std::vector<taskStruct> taskVector;
 };
 
 #endif //UNTITLED5_TASK11_H

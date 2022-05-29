@@ -2,7 +2,8 @@
 
 Task7::Task7(int num)
 {
-//    initializedTable(num);
+    table = std::make_unique<DataTask>(7);
+    vectorId = table->getVectorId(num);
 }
 
 void Task7::solutionTask(Type type)
@@ -11,7 +12,6 @@ void Task7::solutionTask(Type type)
         //хранение изображений
         case type1:
         {
-            //проверка на то, чтобы все было в степенях двойки
             std::vector<int> limitVec = { 1024, 1024, 512 };
             genRand(3, limitVec, number_);
             solverType1();
@@ -53,6 +53,7 @@ void Task7::solverType1()
         number_.at(1) = pow(2, generator.random(2, 10).Mt19937());
     }
     int result = number_.at(0) * number_.at(1) * searchBit(number_.at(2));
+    checkResult(result);
 }
 
 void Task7::solverType2()
@@ -94,11 +95,14 @@ void Task7::checkResult(int result)
                 number_.push_back(result / 8192);
                 table->setSizeType(KBYTE);
             }
-        }
-        else {
+            else {
                 number_.push_back(result / 8);
                 table->setSizeType(BYTE);
             }
+        } else {
+            number_.push_back(result);
+            table->setSizeType(BIT);
+        }
     }
     else if (fmod(result, 60) == 0) {
         if (fmod(result, 60) == 0) {
@@ -119,10 +123,27 @@ void Task7::checkResult(int result)
 
 void Task7::createTask(int id, int number, std::string& text, int& answer)
 {
-
+    table = std::make_unique<DataTask>(number, id);
+    number_.clear();
+    solutionTask(table->getTypeFromString(table->getTypeTask()));
+    answer = number_.back();
+    replacementText(text);
 }
 
 int Task7::getNumber()
 {
     return number_.back();
+}
+void Task7::replacementText(std::string& textTaskString)
+{
+    textTaskString = table->getTextTask();
+    textTaskString += table->getTextQuestion();
+    textTaskString += table->getSizeType();
+    for (int j = 0;  j < number_.size() - 1; ++j) {
+        int found = textTaskString.find('0');
+        if (found != std::string::npos) {
+            textTaskString.replace(found, std::to_string(number_[j]).length(), std::to_string(number_.at(j)));
+
+        }
+    }
 }
