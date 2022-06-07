@@ -112,7 +112,7 @@ void Task11::generationAlphabet(int count)
 {
     std::vector<char> alphabet;
     for(int i = 0; i < count; ++i) {
-        alphabet.push_back((rand() % ( 'z'-'a' +1)) +'a');
+        alphabet.push_back((rand() % ( 'z'-'a' + 1)) +'a');
     }
 }
 

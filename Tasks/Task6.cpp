@@ -1,7 +1,16 @@
 #include "Task6.h"
+#include <map>
 
-Task6::Task6(int /*num*/)
+std::map<std::string,std::string> map = {{"<","+"},
+                                         {"<=", "+"},
+                                         {">", "-"},
+                                         {">=", "-"},
+                                         };
+
+Task6::Task6(int num)
 {
+    table = std::make_unique<DataTask>(6);
+    vectorId = table->getVectorId(num);
 //    initializedTable(num);
 }
 
@@ -10,8 +19,8 @@ void Task6::solutionTask(Type type)
     switch (type) {
         case type1:
         {
-            std::vector<int> limitVec = { 5, 5, 500, 30, 15, 3 };
-            genRand(6, limitVec, number_);
+            std::vector<int> limitVec = { 7, 80, 10, 5 };
+            genRand(4, limitVec, number_);
             solverType1();
             break;
         }
@@ -43,24 +52,29 @@ void Task6::checkResult(int result)
 
 void Task6::solverType1()
 {
-    int n, s;
-    s = number_.at(0);
-    n = number_.at(1);
-    while(s <= number_.at(2)) {
-        switch (number_.back()) {
-            case 1: {
+    int n, s,min;
+    n = number_.at(0);
+    for (int i = 0; i < number_.at(1) ; ++i) {
+        while(s <= number_.at(1)) {
+            switch (number_.back()) {
+                case 1: {
 
+
+                }
+                case 2: {
+
+                }
+                case 3: {
+
+                }
 
             }
-            case 2: {
-
-            }
-            case 3: {
-
-            }
-
+        }
+        if (n == 64) {
+            min = i;
         }
     }
+    number_.push_back(min);
 
 }
 
