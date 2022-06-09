@@ -1,40 +1,78 @@
-.statistic {
-    width: 100%;
-    min-height: 81vh;
-    display: flex;
-    flex-direction: column;
+.topic_statistic {
+    position:relative;
 
-    .statistic__info {
+    p {
+        color: #232326;
+        font-size: 13px;
+    }
+
+    .topic_statistic__bottom_text {
+        left: 26%;
+        position:absolute;
+	    bottom:2%;
+    }
+
+    .topic_statistic__list {
+        width: 70%;
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        margin: 0 0;
+        flex-direction: column;
+        justify-content: center;
 
-        .statistic__info__text {
+        margin-top: 30px;
+
+        .topic_statistic__list__item {
+            height: 50px;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #D1CFD7;
+
             display: flex;
-            flex-direction: column;
-            margin: 0 0;
-
-            .statistic__info__text__name {
-                height: 100px;
-                display: flex;
-                align-items: center;
-                p {
-                    font-size: 30px;
-                    font-weight: 500;
-                    color: black;
-                }
-            }
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
 
             p {
-                color: black;
-                margin:  0 0;
-                margin-bottom: 40px;
+                margin: 0 0;
             }
         }
+    }
+}
 
-        .statistic__info__chart {
-            margin: 0 0;
+.exam_statistic {
+    display: flex;
+    flex-direction: column;
+}
+
+.general_rating {
+
+    .students__table {
+        text-align: center;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        border: 3px solid #ddd;
+        width: 100%;
+    
+        td, th {
+            color: black;
+            border: 1px solid #ddd;
+            padding: 18px;
         }
+    
+        tr:nth-child(even){
+            background-color: #f2f2f2;
+        }
+    
+        tr:hover {
+            background-color: #ddd;
+        }
+    
+        th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background: #F7F7FA;
+            color: black;
+            font-weight: 200;
+          }
     }
 }

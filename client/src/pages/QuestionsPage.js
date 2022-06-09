@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import ResultModal from "../components/ResultModal";
-import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import { useNavigate } from "react-router-dom";
 import "../styles/QuestionsPage.scss";
@@ -8,9 +7,9 @@ import mockData from "../mockData";
 import Question from "../components/Question";
 
 const QuestionsPage = () => {
-    const [questions, setQuestions] = useState([]); //Заглушка mockData("questions")
+    const [questions, setQuestions] = useState(mockData("questions")); //Заглушка mockData("questions")
 
-    const [answers, setAnswers] = useState([]); //Заглушка mockData("answers")
+    const [answers, setAnswers] = useState(mockData("answers")); //Заглушка mockData("answers")
     const [modalActive, setModalActive] = useState(false);
     const [userAnswers, setUserAnswers] = useState([]);
 
@@ -26,7 +25,6 @@ const QuestionsPage = () => {
 
     const URL =
         process.env.REACT_APP_SERVER_URL + `/questions?topicId=${topicId}`;
-    console.log(URL);
 
     useEffect(() => {
         const fetchAnswers = async () => {
@@ -36,7 +34,6 @@ const QuestionsPage = () => {
                 const answers = data.map(question => String(question.answer));
                 setQuestions(questions);
                 setAnswers(answers);
-                console.log(URL);
             } catch (e) {
                 console.log("Question Page error: ", e);
             }
@@ -44,10 +41,6 @@ const QuestionsPage = () => {
         fetchAnswers();
     }, []);
 
-    const clickHandler = (e) => {
-        e.preventDefault();
-        history("/variants");
-    };
 
     const sendResults = () => {
         calculateAnswers(answers);
@@ -72,9 +65,9 @@ const QuestionsPage = () => {
     };
 
     return (
-        <div className="questions">
-            <div className="questions__variants_page">
-                <p onClick={clickHandler}>Вернуться к списку заданий</p>
+        <div className="container questions">
+            <div className="pref_page">
+                <p onClick={() =>  history("/variants")}>Вернуться к списку заданий</p>
             </div>
             {questions.map((question, index) => (
                 <Question
