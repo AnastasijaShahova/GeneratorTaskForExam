@@ -3,6 +3,7 @@
 
 #include "../Database/DataTask.h"
 #include "../Utils/RandomGenerator.h"
+#include "../Utils/StrFormat.h"
 
 #define BIT " битах"
 #define BYTE " байтах"
@@ -21,6 +22,7 @@ public:
     bool checkPower2(int number);
     virtual void checkResult(int result) = 0;
     virtual void createTask(int id, int number, std::string& text, int& answer) = 0;
+    void genRandMin(int count, std::vector<int> limitVec,std::vector<int> mintVec, std::vector<int>& number);
     virtual ~ITask() {}
     virtual int getNumber() = 0;
 

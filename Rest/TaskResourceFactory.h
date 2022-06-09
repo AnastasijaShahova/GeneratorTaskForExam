@@ -15,6 +15,7 @@
 #define TaskNumber8 8
 #define TaskNumber14 14
 #define TaskNumber6 6
+#define TaskNumber16 16
 
 class TaskResourceFactory : public IResourceFactory {
 public:

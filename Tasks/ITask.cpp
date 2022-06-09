@@ -8,6 +8,14 @@ void ITask::genRand(int count, std::vector<int> limitVec, std::vector<int>& numb
     }
 }
 
+void ITask::genRandMin(int count, std::vector<int> limitVec, std::vector<int> mintVec, std::vector<int>& number)
+{
+    for(int i = 0; i < count ; ++i)
+    {
+        number.push_back(generator.random(mintVec[i], limitVec[i]).Mt19937());
+    }
+}
+
 int ITask::searchBit(int number)
 {
     return  ceil(log2(number));

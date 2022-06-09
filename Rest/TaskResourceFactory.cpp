@@ -1,6 +1,8 @@
 #include "TaskResourceFactory.h"
 #include "../Tasks/Task8.h"
 #include "../Tasks/Task14.h"
+#include "../Tasks/Task6.h"
+#include "../Tasks/Task16.h"
 
 
 TaskResourceFactory::TaskResourceFactory()
@@ -72,10 +74,14 @@ void TaskResourceFactory::getTask(int number)
             taskFactory->createTask(std::make_unique<Task14>(number), number);
             break;
         }
-//        case TaskNumber6: {
-//            taskFactory->createTask(std::make_unique<Task6>(number), number);
-//            break;
-//        }
+        case TaskNumber6: {
+            taskFactory->createTask(std::make_unique<Task6>(number), number);
+            break;
+        }
+        case TaskNumber16: {
+            taskFactory->createTask(std::make_unique<Task16>(number), number);
+            break;
+        }
         default:
             break;
     }

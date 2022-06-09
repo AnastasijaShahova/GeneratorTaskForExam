@@ -227,6 +227,7 @@ void Task8::solverType4()
 }
 
 void Task8::checkResult(int result){
+    table->putTableAnswer(number_);
 
 }
 

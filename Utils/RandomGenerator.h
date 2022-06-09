@@ -1,6 +1,8 @@
 #ifndef UNTITLED5_RANDOMGENERATOR_H
 #define UNTITLED5_RANDOMGENERATOR_H
 #include <random>
+ #include <set>
+#include <algorithm>
 
 class Random
 {
@@ -41,4 +43,5 @@ public:
         return rnd;
     }
 };
+
 #endif //UNTITLED5_RANDOMGENERATOR_H

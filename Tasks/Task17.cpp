@@ -225,3 +225,7 @@ void Task17::replacementText(std::string& textTaskString)
         }
     }
 }
+
+void Task17::checkResult(int result) {
+    table->putTableAnswer(number_);
+}
