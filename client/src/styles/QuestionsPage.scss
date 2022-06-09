@@ -1,32 +1,4 @@
 .questions {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 900px;
-    min-height: 81vh;
-    height: 100%;
-    background-color: rgba(248, 248, 248, 1);
-
-    .questions__variants_page {
-        height: 60px;
-        width: 100%;
-        border-bottom: 1px solid rgba(134, 131, 131, 0.19);
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-
-        p {
-            font-size: 18px;
-            color: rgba(43, 0, 78, 0.94);
-            margin:  0 0;
-            padding-left: 90px;
-        }
-    }
-
-    .questions__variants_page:hover p {
-        color: rgba(94, 25, 148, 0.94);
-    }
-
     button {
         margin-top: 30px;
         width: 30%;

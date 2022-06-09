@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import { useHttp } from "../hooks/http.hook";
 import mockData from "../mockData";
 import { useNavigate } from "react-router-dom";
-import "../styles/VariantsPage.scss";
 
 const url = process.env.REACT_APP_SERVER_URL + "/topics?page=2";
 
 const VariantsPage = () => {
     const history = useNavigate();
 
-    const [topics, setTopics] = useState([]); // Заглушка mockData("variants")
+    const [topics, setTopics] = useState(mockData("variants")); // Заглушка mockData("variants")
 
     const { request } = useHttp();
 
@@ -25,18 +24,22 @@ const VariantsPage = () => {
         fetchTopics();
     }, []);
 
-    const clickHandler = (number) => {
-        history(`/variants/variant?variant_id=${number}`);
-    };
 
     return (
-        <div className="variants">
-            <div className="variants__title">
-                <h4>Конструктор вариантов по темам</h4>
+        <div className="container">
+            <div className="title_header">
+                <p>Конструктор вариантов по темам</p>
             </div>
-            <div className="variants__list">
-                {topics.map((topic) => (
-                    <p onClick={() => clickHandler(topic.number)}>
+            <div className="list">
+                {topics.map((topic, index) => (
+                    <p
+                        key={index}
+                        onClick={() =>
+                            history(
+                                `/variants/variant?variant_id=${topic.number}`,
+                            )
+                        }
+                    >
                         {topic.text}
                     </p>
                 ))}

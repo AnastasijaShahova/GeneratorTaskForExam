@@ -1,8 +1,11 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AuthPage from "./pages/AuthPage";
+import ExamStatisticPage from "./pages/ExamStatisticPage";
+import GeneralRatingPage from "./pages/GeneralRatingPage";
 import QuestionsPage from "./pages/QuestionsPage";
 import StatisticPage from "./pages/StatisticPage";
+import TopicStatistikPage from "./pages/TopicStatisticPage";
 import VariantsPage from "./pages/VariantsPage";
 
 export const useRoutes = (isAuth) => {
@@ -16,6 +19,13 @@ export const useRoutes = (isAuth) => {
                     element={<QuestionsPage />}
                 />
                 <Route path="/statistic" element={<StatisticPage />} />
+                <Route path="/general-rating" element={<GeneralRatingPage />} />
+                <Route
+                    path="/topic-statistic"
+                    element={<TopicStatistikPage />}
+                />
+                <Route path="/exam-statistic" element={<ExamStatisticPage />} />
+
                 <Route path="*" element={<Navigate to="/variants" />} />
             </Routes>
         );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useRoutes } from "./routes";
 import { useAuth } from "./hooks/auth.hook";
@@ -7,10 +7,13 @@ import Navbar from "./components/Navbar";
 import "./App.scss";
 
 function App() {
-    const { name, login, logout, userId, role } = useAuth();
-    const isAuth = !!userId;
-    // const isAuth = true; // Заглушка
+    const { login, logout, userId } = useAuth();
+    // const isAuth = !!userId;
+    const isAuth = true; // Заглушка
     const routes = useRoutes(isAuth);
+
+    const name = "Zarifyanov Yusuf Zufarovich"
+    const role = "ученик"
 
     return (
         <AuthContext.Provider

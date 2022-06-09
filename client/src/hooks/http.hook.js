@@ -11,7 +11,6 @@ export const useHttp = () => {
             setLoading(true);
             try {
                 if (body) {
-                    console.log(body);
                     body = JSON.stringify(body);
                     headers["Content-Type"] = "text/plain";
                 }
