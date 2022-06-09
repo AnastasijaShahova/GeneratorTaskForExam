@@ -25,11 +25,11 @@ const CircleChart = () => {
     };
 
     return (
-        <div>
+        <div style={{"marginTop": "50px"}}>
             <Chart
                 type="pie"
-                width={350}
-                height={350}
+                width={500}
+                height={500}
                 options={{
                     title: {
                         display: true,

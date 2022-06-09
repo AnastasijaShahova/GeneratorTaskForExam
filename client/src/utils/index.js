@@ -42,3 +42,7 @@ export const getStudentsTableHeadrs = () => {
         "Место в рейтинге",
     ];
 };
+
+export const getJournalTableHeaders = () => {
+    return ["ФИО", "Email", "Готовность к экзамену"];
+};

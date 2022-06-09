@@ -7,13 +7,10 @@ import Navbar from "./components/Navbar";
 import "./App.scss";
 
 function App() {
-    const { login, logout, userId } = useAuth();
-    // const isAuth = !!userId;
-    const isAuth = true; // Заглушка
-    const routes = useRoutes(isAuth);
+    const { login, logout, userId, role, name } = useAuth();
 
-    const name = "Zarifyanov Yusuf Zufarovich"
-    const role = "ученик"
+    const isAuth = !!userId;
+    const routes = useRoutes(isAuth, role);
 
     return (
         <AuthContext.Provider

@@ -6,18 +6,22 @@ const mockData = (type) => {
                 {
                     text: "Анализ информационных моделей",
                     number: 1,
+                    percent: 25,
                 },
                 {
                     text: "Кодирование и декодирование",
                     number: 2,
+                    percent: 30,
                 },
                 {
                     text: "Анализ программ",
                     number: 3,
+                    percent: 40,
                 },
                 {
                     text: "Перебор слов и системы счисления",
                     number: 4,
+                    percent: 50,
                 },
             ];
             break;
@@ -88,6 +92,39 @@ const mockData = (type) => {
                     rating: 5,
                 },
             ];
+            break;
+
+        case "journal_table":
+            data = [
+                {
+                    fio: "Иванов И И",
+                    email: "i.ivanov@yandex.ru",
+                    ready: true,
+                },
+                {
+                    fio: "Петров А В",
+                    email: "a.petrov@yandex.ru",
+                    ready: false,
+                },
+                {
+                    fio: "Шахова А Ю",
+                    email: "a.shahova@yandex.ru",
+                    ready: null,
+                },
+                {
+                    fio: "Садыков И В",
+                    email: "u.sadykov@google.com",
+                    ready: null,
+                },
+                {
+                    fio: "Рыжкова Д А",
+                    email: "d.ryzkova@yandex.ru",
+                    ready: true,
+                },
+            ];
+            break;
+        case "get_students_names":
+            data = [null, "Иванов", "Петров", "Зарифянов", "Садыков", "Шахова"]
             break;
         default:
             data = [];

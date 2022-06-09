@@ -33,7 +33,7 @@ const Navbar = ({ userName, userRole }) => {
                         <p>{userRole}</p>
                     </div>
                 </div>
-                <p onClick={statisticHandler}>Статистика</p>
+               {userRole === "ученик" && <p onClick={statisticHandler}>Статистика</p>}
                 <p className="logout" onClick={logoutHandler}>Выйти</p>
             </div>
         </div>
