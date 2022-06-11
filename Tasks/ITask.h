@@ -25,6 +25,8 @@ public:
     void genRandMin(int count, std::vector<int> limitVec,std::vector<int> mintVec, std::vector<int>& number);
     virtual ~ITask() {}
     virtual int getNumber() = 0;
+    int GetRandomNumber(int min, int max);
+
 
     Distribution generator;
     std::vector<int> vectorId;

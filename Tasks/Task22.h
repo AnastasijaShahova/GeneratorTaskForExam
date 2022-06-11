@@ -1,18 +1,21 @@
-#ifndef UNTITLED5_TASK6_H
-#define UNTITLED5_TASK6_H
+#ifndef UNTITLED5_TASK22_H
+#define UNTITLED5_TASK22_H
 
 #include "ITask.h"
 
-class Task6 : public ITask {
+class Task22 : public ITask{
 public:
-    Task6(int num);
+    Task22(int num);
     void solutionTask(Type type) override;
     void solverType1();
     void solverType2();
-    void solverType3();
+
     void checkResult(int result) override;
     void createTask(int id, int number, std::string& text, int& answer) override;
     int getNumber() override;
+
+    int twentytwo_max(int n);
+    int twentytwo_min(int n);
 
 private:
     std::vector<int> number_;
@@ -21,4 +24,4 @@ private:
 };
 
 
-#endif //UNTITLED5_TASK6_H
+#endif //UNTITLED5_TASK22_H

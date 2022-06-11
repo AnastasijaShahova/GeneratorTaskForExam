@@ -26,5 +26,13 @@ bool ITask::checkPower2(int number)
     return (number & (number - 1) == 0);
 }
 
+int ITask::GetRandomNumber(int min, int max)
+{
+    srand(time(NULL));
+
+    int num = min + rand() % (max - min + 1);
+
+    return num;
+}
 
 

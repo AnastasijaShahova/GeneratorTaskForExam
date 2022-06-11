@@ -1,15 +1,15 @@
 #include "Task6.h"
 #include <string>
 
-static  char * CODE_TYPE1= "int main() {"
+static  char * CODE_TYPE= "int main() {"
                            "int s,n;"
                            "s = %1%;"
                            "n = %2%; "
-                           "while (  %3%  ) {"
-                           "s = s %4% %5% ;"
-                           "n = n %6% %7%;"
+                           "while (  %3% %4% %5% ) {"
+                           "s = s %6% %7% ;"
+                           "n = n %8% %9%;"
                            "}"
-                           "cout<<%8%<<endl; }";
+                           "cout<<%10%<<endl; }";
 
 Task6::Task6(int num)
 {
@@ -18,14 +18,6 @@ Task6::Task6(int num)
 //    initializedTable(num);
 }
 
-int GetRandomNumber(int min, int max)
-{
-    srand(time(NULL));
-
-    int num = min + rand() % (max - min + 1);
-
-    return num;
-}
 
 void Task6::solutionTask(Type type)
 {
@@ -64,7 +56,6 @@ void Task6::solutionTask(Type type)
 
 void Task6::checkResult(int result)
 {
-    table->putTableAnswer(number_);
 }
 
 void Task6::solverType1()
@@ -125,6 +116,8 @@ void Task6::solverType1()
         }
     }
     number_.push_back(n);
+    sign_vec.push_back("n");
+    table->putTableAnswer(number_);
 }
 
 void Task6::solverType2()
@@ -144,14 +137,18 @@ void Task6::solverType2()
             int number_n = number_.at(3);
             int n = number_.at(0);
 
+
             if (n * number_n > number_less) {
                 number_.at(0) = GetRandomNumber(2, 5);
                 n = number_.at(0);
             }
 
+            sign_vec.push_back("<=");
             while (n <= number_less) {
                 s = s + number_s;
+                sign_vec.push_back("+");
                 n = n * number_n;
+                sign_vec.push_back("*");
             }
         } else {
 
@@ -159,8 +156,11 @@ void Task6::solverType2()
             int n = number_.at(0);
 
             while (n <= number_less) {
+                sign_vec.push_back("<=");
                 s = s + number_s;
+                sign_vec.push_back("+");
                 n = n + number_n;
+                sign_vec.push_back("+");
             }
         }
     }
@@ -177,21 +177,30 @@ void Task6::solverType2()
             }
 
             while (n < number_less) {
+                sign_vec.push_back("<");
                 s = s + number_s;
+                sign_vec.push_back("+");
                 n = n * number_n;
+                sign_vec.push_back("*");
+
             }
         } else {
 
             int number_n = number_.at(3);
             int n = number_.at(0);
 
+            sign_vec.push_back("<");
             while (n < number_less) {
                 s = s + number_s;
+                sign_vec.push_back("+");
                 n = n + number_n;
+                sign_vec.push_back("+");
             }
         }
     }
     number_.push_back(s);
+    sign_vec.push_back("s");
+    table->putTableAnswer(number_);
 }
 
 void Task6::solverType3()
@@ -205,8 +214,11 @@ void Task6::solverType3()
     int threshold = number_.at(0);
     for (int i = 0; i < threshold + 1 ; ++i) {
         while(s <= threshold) {
+            sign_vec.push_back("<=");
             s = s + number_.at(1);
+            sign_vec.push_back("+");
             n = n * 2;
+            sign_vec.push_back("*");
         }
         if (n == degree[rand] && i < min) {
             min = i;
@@ -214,13 +226,16 @@ void Task6::solverType3()
         n = 1;
         s = i + 1;
     }
+    sign_vec.push_back("n");
     number_.push_back(min);
+    table->putTableAnswer(number_);
 }
 
 void Task6::createTask(int id, int number, std::string& text, int& answer)
 {
     table = std::make_unique<DataTask>(number, id);
     number_.clear();
+    sign_vec.clear();
     solutionTask(table->getTypeFromString(table->getTypeTask()));
     answer = number_.back();
     std::string textTaskString = table->getTextTask();
@@ -230,7 +245,8 @@ void Task6::createTask(int id, int number, std::string& text, int& answer)
     }
 
     // сгенерирована строка с заданием
-    text = textTaskString + (StrFormat(CODE_TYPE1) % number_.at(0) % number_.at(1) % number_.at(2) % number_.at(3) % number_.at(4) % number_.at(5)).str();
+    text = textTaskString + (StrFormat(CODE_TYPE) % number_.at(0) % number_.at(1) % number_.at(2) % sign_vec.at(0) %  number_.at(3) % sign_vec.at(1) % number_.at(4) %  sign_vec.at(2) % number_.at(5) %  sign_vec.at(3)).str();
+
 }
 
 int Task6::getNumber()

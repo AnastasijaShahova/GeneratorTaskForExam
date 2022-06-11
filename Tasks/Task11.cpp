@@ -130,7 +130,6 @@ void Task11::replacementText(std::string& textTaskString)
     textTaskString = table->getTextTask();
     textTaskString += table->getTextQuestion();
     textTaskString += table->getSizeType();
-    std::string t;
     for (int j = 0;  j < number_.size() - 1; ++j) {
         int found = textTaskString.find('0');
         if (found != std::string::npos) {

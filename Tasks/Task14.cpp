@@ -1,10 +1,16 @@
 #include "Task14.h"
 #include <math.h>
 
+
 Task14::Task14(int num)
 {
-    table = std::make_unique<DataTask>(8);
+    table = std::make_unique<DataTask>(14);
     vectorId = table->getVectorId(num);
+//    BOOST_PYTHON_MODULE(hello)
+//    {
+//        class_<World>("to_c")
+//        .def("fourteen", &World::fourteen);
+//    }
 }
 
 void Task14::solutionTask(Type type)
@@ -14,7 +20,7 @@ void Task14::solutionTask(Type type)
         case type1:
         {
             //Будет 4 числа всегда , затем отдельно генеррировать число 1 или 0 для формулировки вопроса
-            std::vector<int> limitVec = { 9, 5, , };
+            std::vector<int> limitVec = { 9, 5, 10 };
             genRand(4, limitVec, number_);
             if (number_.front() < number_.back()) {
                 std::swap(number_[0], number_[1]);
@@ -64,7 +70,6 @@ void Task14::solutionTask(Type type)
 
 void Task14::solverType1()
 {
-    checkResult(getResult((number_.at(1)), number_.at(0)));
 }
 
 void Task14::createTask(int id, int number, std::string& text, int& answer)
@@ -94,4 +99,26 @@ void Task14::replacementText(std::string& textTaskString)
 int Task14::getNumber()
 {
     return number_.back();
+}
+
+void Task14::solverType2()
+{
+
+
+}
+
+void Task14::solverType3()
+{
+
+
+}
+
+void Task14::solverType4()
+{
+
+
+}
+
+void Task14::checkResult(int result) {
+
 }
