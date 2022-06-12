@@ -17,12 +17,15 @@ public:
     void createTask(int id, int number, std::string& text,int& answer) override;
     int getNumber() override;
     void replacementText(std::string& str);
+    void genRandFor14Task(int count, std::vector<int>& number);
+    void hasDuplicate(std::vector<int>& v);
 
 private:
     //end vector keeps answer
     std::vector<int> number_;
     std::unique_ptr<DataTask> table ;
-    std::vector<int> base = {2,4,8};
+    std::vector<int> base = {2,4,8,16};
+    std::vector<char*> vec_sign;
 };
 
 
