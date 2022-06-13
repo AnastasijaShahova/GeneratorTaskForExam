@@ -3,6 +3,8 @@
 #include "ServiceSettingFactory.h"
 #include "TaskLabelResourceFactory.h"
 #include "TaskResourceFactory.h"
+#include "StudentsAllStatistics.h"
+#include "PersonalStatistics.h"
 
 TaskService::TaskService(std::shared_ptr<IServiceSettings> settings_factory)
 {
@@ -26,6 +28,14 @@ IResourceFactory* TaskService::makeRes(As type) {
         }
         case As::Task: {
             res = new TaskResourceFactory();
+            break;
+        }
+        case As::AllStat: {
+            res = new StudentsAllStatistics();
+            break;
+        }
+        case As::PersonalStat: {
+            res = new PersonalStatistics();
             break;
         }
     }

@@ -1,7 +1,6 @@
 #ifndef UNTITLED5_LOGIN_H
 #define UNTITLED5_LOGIN_H
 
-#include <string>
 #include "MySqlDatabase.h"
 
 struct users {

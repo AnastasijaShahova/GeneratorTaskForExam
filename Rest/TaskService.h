@@ -8,7 +8,11 @@
 enum class As {
     Login,
     Label,
-    Task
+    Task,
+    AllStat,
+    PersonalStat,
+    DoneExam,
+    TeachersList
 };
 
 class TaskService : public IService{

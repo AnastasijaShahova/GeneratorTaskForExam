@@ -129,7 +129,7 @@ void DataTask::setSizeType(const std::string &sizeType)
     DataTask::sizeType = sizeType;
 }
 
-int DataTask::countTypeTask(int num)
+int DataTask:: countTypeTask(int num)
 {
     int count = 0;
     const std::string query = "select count(id) from task where number_task = " + std::to_string(num) + ";";
