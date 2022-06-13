@@ -30,10 +30,30 @@ void Statistics::countPersentIncorrect()
     }
 }
 
+void Statistics::countColor()
+{
+    std::string color;
+    for (int i = 0 ; i < statistic.getUsersStatistic().size(); ++i) {
+        if (statistic.getUserStatistic()[i].incorrect / statistic.getUserStatistic()[i].all_count > 0.7) {
+            color = "green";
+        } else if (statistic.getUserStatistic()[i].incorrect / statistic.getUserStatistic()[i].all_count > 0.5 && statistic.getUserStatistic()[i].incorrect / statistic.getUserStatistic()[i].all_count < 0.7) {
+            color = "yellow";
+        } else {
+            color = "red";
+        }
+        for_teacher teach = {statistic.getUsersStatistic()[i].name,statistic.getUsersStatistic()[i].email,color};
+        for_teach.push_back(teach);
+    }
+}
+
 const std::vector<allStatistic> &Statistics::getAll() const {
     return all;
 }
 
 const std::vector<user_stat> &Statistics::getStatTask() const {
     return stat_task;
+}
+
+const std::vector<for_teacher> &Statistics::getForTeach() const {
+    return for_teach;
 }

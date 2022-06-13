@@ -16,21 +16,31 @@ struct user_stat {
     int present;
 };
 
+struct for_teacher {
+    std::string name;
+    std::string email;
+    std::string color;
+};
+
 class Statistics {
 public:
     Statistics(const std::string &name);
     Statistics();
     const std::vector<allStatistic> &getAll() const;
     const std::vector<user_stat> &getStatTask() const;
+    const std::vector<for_teacher> &getForTeach() const;
 
 // считает процент выполнения
 void countPersentDone();
 // считает процент неверных ответов
 void countPersentIncorrect();
 
+void countColor();
+
 private:
     std::vector<allStatistic> all;
     std::vector<user_stat> stat_task;
+    std::vector<for_teacher> for_teach;
     DataStatistic statistic;
 };
 

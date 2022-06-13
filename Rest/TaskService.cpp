@@ -5,6 +5,7 @@
 #include "TaskResourceFactory.h"
 #include "StudentsAllStatistics.h"
 #include "PersonalStatistics.h"
+#include "TeacherStatistics.h"
 
 TaskService::TaskService(std::shared_ptr<IServiceSettings> settings_factory)
 {
@@ -36,6 +37,10 @@ IResourceFactory* TaskService::makeRes(As type) {
         }
         case As::PersonalStat: {
             res = new PersonalStatistics();
+            break;
+        }
+        case As::TeachersList: {
+            res = new TeacherStatistics();
             break;
         }
     }
